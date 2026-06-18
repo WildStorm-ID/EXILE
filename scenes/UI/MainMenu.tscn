@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://bxw7t5q4aanmm"]
+
+[ext_resource type="Script" uid="uid://hqgme41iks2j" path="res://scripts/UI/MainMenu.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://da3ws4ubr5f3" path="res://assets/backgrounds/sky_water_overlay.png" id="2_sky_water"]
+[ext_resource type="Texture2D" uid="uid://b53a7wbmtg1r" path="res://assets/backgrounds/pegunungan_layer1_pixel.png" id="3_mountains"]
+[ext_resource type="Texture2D" uid="uid://bepanlur7od2p" path="res://assets/backgrounds/pabrik_layer2_pixel.png" id="4_factories"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.015, 0.035, 0.04, 0.76)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.52, 0.9, 0.86, 0.62)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.06, 0.2, 0.22, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.98, 0.92, 0.75)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.11, 0.34, 0.31, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.96, 1, 0.8, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="MainMenu" type="Node2D" unique_id=427770949]
+script = ExtResource("1_script")
+
+[node name="ZoneBackdrop" type="CanvasLayer" parent="." unique_id=1093840070]
+layer = -200
+
+[node name="SkyWaterOverlay" type="TextureRect" parent="ZoneBackdrop" unique_id=509721562]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_sky_water")
+stretch_mode = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1398929822]
+
+[node name="FarMountains" type="ParallaxLayer" parent="ParallaxBackground" unique_id=553968739]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/FarMountains" unique_id=1903556790]
+position = Vector2(0, -300)
+texture = ExtResource("3_mountains")
+centered = false
+
+[node name="MidFactories" type="ParallaxLayer" parent="ParallaxBackground" unique_id=526203087]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Factories" type="Sprite2D" parent="ParallaxBackground/MidFactories" unique_id=1727176597]
+position = Vector2(0, -200)
+texture = ExtResource("4_factories")
+centered = false
+
+[node name="PollutionVeil" type="CanvasLayer" parent="." unique_id=1733768539]
+layer = -20
+
+[node name="Tint" type="ColorRect" parent="PollutionVeil" unique_id=160094277]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.01, 0.055, 0.045, 0.28)
+
+[node name="WaterlineGlow" type="ColorRect" parent="PollutionVeil" unique_id=506839671]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 294.0
+offset_bottom = 302.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.68, 0.95, 0.78, 0.32)
+
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=2114099086]
+layer = 30
+
+[node name="Root" type="Control" parent="MenuLayer" unique_id=724323816]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuPanel" type="PanelContainer" parent="MenuLayer/Root" unique_id=2143000418]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -166.0
+offset_right = 432.0
+offset_bottom = 166.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuLayer/Root/MenuPanel" unique_id=629687507]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Root/MenuPanel/MarginContainer" unique_id=2141084006]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="Label" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=1464523401]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 1, 0.9, 1)
+theme_override_colors/font_shadow_color = Color(0.04, 0.13, 0.12, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 58
+text = "EXILE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=1127736772]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79, 0.96, 0.91, 1)
+theme_override_font_sizes/font_size = 18
+text = "The Last Standing Finzo 
+Dari Sungai Brantas"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Divider" type="ColorRect" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=754067877]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.72, 0.95, 0.84, 0.48)
+
+[node name="Pitch" type="Label" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=20588835]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.84, 0.78, 1)
+text = "Tinggalkan polusi limbah karya manusia. Cari air bebas sebelum tubuhmu menyerah."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=354691618]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=725420558]
+custom_minimum_size = Vector2(250, 44)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../ExitButton")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "Mulai Pelarian"
+
+[node name="ExitButton" type="Button" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=1522431330]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "Keluar"

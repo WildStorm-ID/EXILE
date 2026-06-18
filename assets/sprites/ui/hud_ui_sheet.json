@@ -1,0 +1,34 @@
+{
+  "image": "hud_ui_sheet.png",
+  "size": {
+	"w": 512,
+	"h": 160
+  },
+  "regions": {
+	"victory_banner": {
+	  "x": 0,
+	  "y": 0,
+	  "w": 400,
+	  "h": 80
+	},
+	"score_panel": {
+	  "x": 0,
+	  "y": 88,
+	  "w": 200,
+	  "h": 40
+	},
+	"health_icon": {
+	  "x": 216,
+	  "y": 92,
+	  "w": 32,
+	  "h": 32
+	},
+	"distance_icon": {
+	  "x": 260,
+	  "y": 92,
+	  "w": 32,
+	  "h": 32
+	}
+  },
+  "notes": "Transparent 16-bit style HUD atlas. Regions are pixel-perfect element bounds; unused atlas area is transparent."
+}

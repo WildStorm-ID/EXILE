@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/obstacles/WasteBarrel.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/obstacles/limbah_pabrik_0.png" id="2_frame_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/obstacles/limbah_pabrik_1.png" id="3_frame_1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_barrel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_frame_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_frame_1")
+}],
+"loop": true,
+"name": &"leak",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_barrel"]
+size = Vector2(32, 42)
+
+[node name="WasteBarrel" type="Area2D" groups=["water_obstacle"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_barrel")
+animation = &"leak"
+autoplay = "leak"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_barrel")
+
+[node name="Bubbles" type="CPUParticles2D" parent="."]
+position = Vector2(-4, -25)
+emitting = true
+amount = 20
+lifetime = 1.4
+local_coords = false
+direction = Vector2(0, -1)
+spread = 28.0
+gravity = Vector2(0, -24)
+initial_velocity_min = 16.0
+initial_velocity_max = 44.0
+scale_amount_min = 1.4
+scale_amount_max = 4.2
+color = Color(0.22, 0.78, 0.28, 0.55)

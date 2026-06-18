@@ -1,0 +1,266 @@
+[gd_scene format=3 uid="uid://bfmlcon4bt0ja"]
+
+[ext_resource type="Script" uid="uid://4ord4icceykf" path="res://scripts/UI/HUD.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://banqojbjtcy23" path="res://assets/sprites/ui/hud_health_icon.png" id="2_health_icon"]
+[ext_resource type="Texture2D" uid="uid://bhnmrnuj03pgc" path="res://assets/sprites/ui/hud_score_panel.png" id="3_score_panel"]
+[ext_resource type="Texture2D" uid="uid://brxk082goaeru" path="res://assets/sprites/ui/hud_victory_banner.png" id="4_victory_banner"]
+[ext_resource type="Texture2D" uid="uid://c5whnkri5ukn6" path="res://assets/sprites/ui/hud_distance_icon.png" id="5_distance_icon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.02, 0.05, 0.07, 0.74)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.66, 0.9, 0.96, 0.55)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.08, 0.26, 0.32, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.96, 1, 0.65)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="HUD" type="CanvasLayer" unique_id=997571952]
+layer = 20
+script = ExtResource("1_script")
+
+[node name="Root" type="Control" parent="." unique_id=1880106060]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBar" type="HBoxContainer" parent="Root" unique_id=617690621]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="HealthIcon" type="TextureRect" parent="Root/TopBar" unique_id=966841867]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_health_icon")
+
+[node name="HealthBar" type="Control" parent="Root/TopBar" unique_id=1833098179]
+custom_minimum_size = Vector2(108, 22)
+layout_mode = 2
+
+[node name="Back" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=667178225]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+offset_top = 5.0
+offset_right = 108.0
+offset_bottom = 21.0
+mouse_filter = 2
+color = Color(0.04, 0.02, 0.025, 0.92)
+
+[node name="BorderTop" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=1897080753]
+layout_mode = 1
+offset_top = 5.0
+offset_right = 108.0
+offset_bottom = 7.0
+mouse_filter = 2
+color = Color(0.62, 0.1, 0.1, 1)
+
+[node name="BorderBottom" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=1776527468]
+layout_mode = 1
+offset_top = 35.0
+offset_right = 108.0
+offset_bottom = 37.0
+mouse_filter = 2
+color = Color(0.08, 0.01, 0.015, 1)
+
+[node name="BorderLeft" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=662276167]
+layout_mode = 1
+offset_top = 5.0
+offset_right = 2.0
+offset_bottom = 21.0
+mouse_filter = 2
+color = Color(0.08, 0.01, 0.015, 1)
+
+[node name="BorderRight" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=208721709]
+layout_mode = 1
+offset_left = 106.0
+offset_top = 5.0
+offset_right = 108.0
+offset_bottom = 21.0
+mouse_filter = 2
+color = Color(0.08, 0.01, 0.015, 1)
+
+[node name="Fill" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=1025031372]
+layout_mode = 1
+offset_left = 4.0
+offset_top = 9.0
+offset_right = 104.0
+offset_bottom = 33.0
+mouse_filter = 2
+color = Color(0.9, 0.04, 0.04, 1)
+
+[node name="Shine" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=800235253]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 10.0
+offset_right = 103.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(1, 0.34, 0.3, 1)
+
+[node name="StatusLabel" type="Label" parent="Root/TopBar" unique_id=649226257]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
+text = "Status Stable  Hits [---]"
+
+[node name="ZoneLabel" type="Label" parent="Root/TopBar" unique_id=191060682]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.94, 1, 1)
+text = "Water"
+
+[node name="SpeedLabel" type="Label" parent="Root/TopBar" unique_id=148651948]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.94, 1, 1)
+text = "Speed x1.00"
+
+[node name="Spacer" type="Control" parent="Root/TopBar" unique_id=1041245165]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScoreBox" type="Control" parent="Root/TopBar" unique_id=99492496]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+
+[node name="ScorePanel" type="TextureRect" parent="Root/TopBar/ScoreBox" unique_id=1336992208]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_score_panel")
+
+[node name="DistanceIcon" type="TextureRect" parent="Root/TopBar/ScoreBox" unique_id=678851599]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 42.0
+offset_bottom = 36.0
+mouse_filter = 2
+texture = ExtResource("5_distance_icon")
+
+[node name="ScoreLabel" type="Label" parent="Root/TopBar/ScoreBox" unique_id=955180380]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 9.0
+offset_right = -14.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "00000 m"
+horizontal_alignment = 2
+
+[node name="Center" type="Control" parent="Root" unique_id=1023870683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FreedomBanner" type="TextureRect" parent="Root/Center" unique_id=1041301731]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -128.0
+offset_right = 200.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_victory_banner")
+
+[node name="ResultPanel" type="PanelContainer" parent="Root/Center" unique_id=2087781055]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -98.0
+offset_right = 178.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="Root/Center/ResultPanel" unique_id=1176022495]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Center/ResultPanel/MarginContainer" unique_id=1451913779]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResultTitle" type="Label" parent="Root/Center/ResultPanel/MarginContainer/VBoxContainer" unique_id=936072121]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "FREEDOM"
+horizontal_alignment = 1
+
+[node name="ResultScore" type="Label" parent="Root/Center/ResultPanel/MarginContainer/VBoxContainer" unique_id=1808440067]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.96, 1, 1)
+text = "Final distance: 00000 m"
+horizontal_alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="Root/Center/ResultPanel/MarginContainer/VBoxContainer" unique_id=1249906997]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="Root/Center/ResultPanel/MarginContainer/VBoxContainer/ButtonRow" unique_id=799329195]
+custom_minimum_size = Vector2(130, 38)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+text = "Coba Lagi"
+
+[node name="MenuButton" type="Button" parent="Root/Center/ResultPanel/MarginContainer/VBoxContainer/ButtonRow" unique_id=1204294812]
+custom_minimum_size = Vector2(130, 38)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+text = "Main Menu"

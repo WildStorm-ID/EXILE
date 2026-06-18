@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://cbg7dv3irx86n"]
+
+[ext_resource type="Script" uid="uid://cmt3mbtdbncso" path="res://scripts/GameManager.gd" id="1_game_manager"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="2_player_scene"]
+[ext_resource type="Script" uid="uid://c80smsl36yonb" path="res://scripts/ObstacleSpawner.gd" id="3_spawner_script"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/SeaMine.tscn" id="4_sea_mine_scene"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/WasteBarrel.tscn" id="5_waste_barrel_scene"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/SmokeCloud.tscn" id="6_smoke_cloud_scene"]
+[ext_resource type="PackedScene" uid="uid://bfmlcon4bt0ja" path="res://scenes/UI/HUD.tscn" id="7_hud_scene"]
+[ext_resource type="Script" uid="uid://dphga7fyub3vw" path="res://scripts/HurtEffect.gd" id="8_hurt_script"]
+[ext_resource type="Texture2D" uid="uid://da3ws4ubr5f3" path="res://assets/backgrounds/sky_water_overlay.png" id="9_sky_water"]
+[ext_resource type="Texture2D" uid="uid://b53a7wbmtg1r" path="res://assets/backgrounds/pegunungan_layer1_pixel.png" id="10_mountains"]
+[ext_resource type="Texture2D" uid="uid://bepanlur7od2p" path="res://assets/backgrounds/pabrik_layer2_pixel.png" id="11_factories"]
+[ext_resource type="Shader" uid="uid://cvyjuka3irjvv" path="res://shaders/vignette.gdshader" id="12_vignette_shader"]
+[ext_resource type="AudioStream" uid="uid://ca280ep3ovag7" path="res://assets/audio/ocean_ambient.wav" id="13_bgm"]
+[ext_resource type="AudioStream" uid="uid://2cv06hmnrndp" path="res://assets/audio/splash.wav" id="14_splash"]
+[ext_resource type="AudioStream" uid="uid://dpcqo32xlfoa" path="res://assets/audio/flap.wav" id="15_flap"]
+[ext_resource type="AudioStream" uid="uid://bdj8xt8dx6dgh" path="res://assets/audio/hurt.wav" id="16_hurt"]
+[ext_resource type="AudioStream" uid="uid://bojg2jfg2li13" path="res://assets/audio/win_fanfare.wav" id="17_win"]
+[ext_resource type="Script" uid="uid://epfp12siy2x" path="res://scripts/WaterGameplay.gd" id="18_water_gameplay"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = ExtResource("12_vignette_shader")
+shader_parameter/vignette_strength = 0.55
+shader_parameter/radius = 0.66
+shader_parameter/softness = 0.36
+
+[node name="World" type="Node2D" unique_id=1946118258]
+script = ExtResource("1_game_manager")
+speed_step_distance = 200
+
+[node name="ZoneBackdrop" type="CanvasLayer" parent="." unique_id=1116698473]
+layer = -200
+
+[node name="SkyWaterOverlay" type="TextureRect" parent="ZoneBackdrop" unique_id=123922504]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_sky_water")
+stretch_mode = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=812473701]
+
+[node name="FarMountains" type="ParallaxLayer" parent="ParallaxBackground" unique_id=90700035]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/FarMountains" unique_id=1979515830]
+position = Vector2(0, -300)
+texture = ExtResource("10_mountains")
+centered = false
+
+[node name="MidFactories" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1937888011]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Factories" type="Sprite2D" parent="ParallaxBackground/MidFactories" unique_id=987840718]
+position = Vector2(0, -200)
+texture = ExtResource("11_factories")
+centered = false
+
+[node name="Player" parent="." unique_id=31379633 instance=ExtResource("2_player_scene")]
+position = Vector2(120, 360)
+
+[node name="WaterGameplay" type="CanvasLayer" parent="." unique_id=65863537]
+layer = 4
+
+[node name="WaterFX" type="Node2D" parent="WaterGameplay" unique_id=1110319351]
+script = ExtResource("18_water_gameplay")
+
+[node name="ObstacleSpawner" type="Node2D" parent="." unique_id=163474368]
+script = ExtResource("3_spawner_script")
+sea_mine_scene = ExtResource("4_sea_mine_scene")
+waste_barrel_scene = ExtResource("5_waste_barrel_scene")
+smoke_cloud_scene = ExtResource("6_smoke_cloud_scene")
+min_interval = 0.5
+max_interval = 1.0
+
+[node name="SpawnTimer" type="Timer" parent="ObstacleSpawner" unique_id=1258211154]
+one_shot = true
+
+[node name="HUD" parent="." unique_id=62408102 instance=ExtResource("7_hud_scene")]
+
+[node name="HurtEffect" type="CanvasLayer" parent="." unique_id=801315494]
+layer = 12
+script = ExtResource("8_hurt_script")
+
+[node name="DamageOverlay" type="ColorRect" parent="HurtEffect" unique_id=576495393]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Vignette" type="ColorRect" parent="HurtEffect" unique_id=1548404003]
+material = SubResource("ShaderMaterial_vignette")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BrightnessOverlay" type="ColorRect" parent="HurtEffect" unique_id=364688224]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1341240568]
+stream = ExtResource("13_bgm")
+volume_db = -11.0
+
+[node name="SFX" type="Node" parent="." unique_id=573051540]
+
+[node name="Splash" type="AudioStreamPlayer" parent="SFX" unique_id=12288887]
+stream = ExtResource("14_splash")
+volume_db = -5.0
+
+[node name="Flap" type="AudioStreamPlayer" parent="SFX" unique_id=508946527]
+stream = ExtResource("15_flap")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="SFX" unique_id=1852596100]
+stream = ExtResource("16_hurt")
+
+[node name="Win" type="AudioStreamPlayer" parent="SFX" unique_id=908136366]
+stream = ExtResource("17_win")
+volume_db = -2.0

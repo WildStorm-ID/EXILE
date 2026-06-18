@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/obstacles/SmokeCloud.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/obstacles/polusi_asap_0.png" id="2_frame_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/obstacles/polusi_asap_1.png" id="3_frame_1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/obstacles/polusi_asap_2.png" id="4_frame_2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_smoke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_frame_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_frame_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_frame_2")
+}],
+"loop": true,
+"name": &"drift",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smoke"]
+size = Vector2(82, 48)
+
+[node name="SmokeCloud" type="Area2D" groups=["air_obstacle"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_smoke")
+animation = &"drift"
+autoplay = "drift"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_smoke")

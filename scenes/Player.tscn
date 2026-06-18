@@ -1,0 +1,112 @@
+[gd_scene load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_player_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/idle_0.png" id="2_idle_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/idle_1.png" id="3_idle_1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/idle_2.png" id="4_idle_2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/idle_3.png" id="5_idle_3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/swim_0.png" id="6_swim_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/swim_1.png" id="7_swim_1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/swim_2.png" id="8_swim_2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/swim_3.png" id="9_swim_3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/swim_4.png" id="10_swim_4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/swim_5.png" id="11_swim_5"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/fly_0.png" id="12_fly_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/fly_1.png" id="13_fly_1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/fly_2.png" id="14_fly_2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/fly_3.png" id="15_fly_3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurt_0.png" id="16_hurt_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurt_1.png" id="17_hurt_1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_player"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_idle_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_idle_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_idle_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_idle_3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_swim_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_swim_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_swim_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_swim_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_swim_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_swim_5")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_fly_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fly_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_fly_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fly_3")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_hurt_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hurt_1")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 9.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(58, 26)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 1
+collision_mask = 0
+script = ExtResource("1_player_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_player")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 12)
+shape = SubResource("RectangleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = true
+position_smoothing_enabled = true
+position_smoothing_speed = 5.0
