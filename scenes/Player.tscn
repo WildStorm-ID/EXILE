@@ -15,8 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://cqcxk6wesm5nb" path="res://assets/sprites/player/flying_fish/fly_1.png" id="13_fly_1"]
 [ext_resource type="Texture2D" uid="uid://y76aleqsgdnf" path="res://assets/sprites/player/flying_fish/fly_2.png" id="14_fly_2"]
 [ext_resource type="Texture2D" uid="uid://djjin2c3tcls1" path="res://assets/sprites/player/flying_fish/fly_3.png" id="15_fly_3"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurt_0.png" id="16_hurt_0"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurt_1.png" id="17_hurt_1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurtfly_0.png" id="16_hurtfly_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurtfly_1.png" id="17_hurtfly_1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurtswim_0.png" id="18_hurtswim_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurtswim_1.png" id="19_hurtswim_1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
@@ -39,13 +41,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("16_hurt_0")
+"texture": ExtResource("16_hurtfly_0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_hurt_1")
+"texture": ExtResource("17_hurtfly_1")
 }],
 "loop": false,
-"name": &"hurt",
+"name": &"hurt_fly",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_hurtswim_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_hurtswim_1")
+}],
+"loop": false,
+"name": &"hurt_swim",
 "speed": 9.0
 }, {
 "frames": [{

@@ -93,7 +93,7 @@ func take_hit() -> bool:
 
 	hit_count += 1
 	invulnerable = true
-	sprite.play("hurt")
+	sprite.play("hurt_swim" if _is_in_water() else "hurt_fly")
 	hit_registered.emit(hit_count)
 	status_changed.emit(_status_text(), hit_count, in_smoke)
 	get_tree().create_timer(1.0, true, false, true).timeout.connect(_clear_invulnerability)
@@ -171,7 +171,7 @@ func _update_camera_anchor() -> void:
 	camera.global_position = Vector2(_camera_center_x, waterline_y)
 
 func _update_animation() -> void:
-	if sprite.animation == "hurt" and sprite.is_playing():
+	if String(sprite.animation).begins_with("hurt_") and sprite.is_playing():
 		return
 	if _is_in_water():
 		if abs(velocity.x) + abs(velocity.y) > 35.0:
