@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fkxcbuckfwcu"
-path="res://.godot/imported/untitled_0006.png-016cb1b8c6a8f94a2c56aa4df03aa990.ctex"
+uid="uid://c5egrpg4pptlw"
+path="res://.godot/imported/swim_1.png-f61868d2fdcdc9b009df00d0567c729b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/flying_fish_pt2/untitled_0006.png"
-dest_files=["res://.godot/imported/untitled_0006.png-016cb1b8c6a8f94a2c56aa4df03aa990.ctex"]
+source_file="res://temp/swim_1.png"
+dest_files=["res://.godot/imported/swim_1.png-f61868d2fdcdc9b009df00d0567c729b.ctex"]
 
 [params]
 

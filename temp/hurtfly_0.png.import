@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ssdek7ctaqyc"
-path="res://.godot/imported/fly_1.png-f212ae18d1032e058d898f48960dd99e.ctex"
+uid="uid://bisoeysn57bes"
+path="res://.godot/imported/hurtfly_0.png-b0a8a28fca81dfd952e09ad701f49068.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/flying_fish/fly_1.png"
-dest_files=["res://.godot/imported/fly_1.png-f212ae18d1032e058d898f48960dd99e.ctex"]
+source_file="res://temp/hurtfly_0.png"
+dest_files=["res://.godot/imported/hurtfly_0.png-b0a8a28fca81dfd952e09ad701f49068.ctex"]
 
 [params]
 

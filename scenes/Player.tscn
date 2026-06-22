@@ -15,10 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://cqcxk6wesm5nb" path="res://assets/sprites/player/flying_fish/fly_1.png" id="13_fly_1"]
 [ext_resource type="Texture2D" uid="uid://y76aleqsgdnf" path="res://assets/sprites/player/flying_fish/fly_2.png" id="14_fly_2"]
 [ext_resource type="Texture2D" uid="uid://djjin2c3tcls1" path="res://assets/sprites/player/flying_fish/fly_3.png" id="15_fly_3"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurtfly_0.png" id="16_hurtfly_0"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurtfly_1.png" id="17_hurtfly_1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurtswim_0.png" id="18_hurtswim_0"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/hurtswim_1.png" id="19_hurtswim_1"]
+[ext_resource type="Texture2D" uid="uid://bp6n4fniylc7n" path="res://assets/sprites/player/flying_fish/hurtfly_0.png" id="16_hurtfly_0"]
+[ext_resource type="Texture2D" uid="uid://bcy3xvin7ej3h" path="res://assets/sprites/player/flying_fish/hurtfly_1.png" id="17_hurtfly_1"]
+[ext_resource type="Texture2D" uid="uid://cqyf7viait06w" path="res://assets/sprites/player/flying_fish/hurtswim_0.png" id="18_hurtswim_0"]
+[ext_resource type="Texture2D" uid="uid://d60vr8tw3i7j" path="res://assets/sprites/player/flying_fish/hurtswim_1.png" id="19_hurtswim_1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
@@ -111,7 +111,7 @@ script = ExtResource("1_player_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2055498269]
 sprite_frames = SubResource("SpriteFrames_player")
-animation = &"idle"
+animation = &"hurt_fly"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=667681312]
