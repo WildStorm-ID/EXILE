@@ -32,6 +32,7 @@ var controls_enabled := true
 var invulnerable := false
 var in_smoke := false
 var freedom_mode := false
+var stunned := false
 
 var _last_in_water := true
 var _smoke_sources := 0
@@ -47,10 +48,15 @@ func _ready() -> void:
 	zone_changed.emit(_last_in_water)
 
 func _physics_process(delta: float) -> void:
+	if stunned:
+		_apply_stun_motion(delta)
+		return
+
 	if freedom_mode:
-		velocity = Vector2(260.0, -18.0)
-		move_and_slide()
-		_update_animation()
+		velocity = Vector2.ZERO
+		_update_camera_anchor()
+		if sprite.animation != &"fly":
+			sprite.play("fly")
 		return
 
 	if not controls_enabled:
@@ -93,7 +99,10 @@ func take_hit() -> bool:
 
 	hit_count += 1
 	invulnerable = true
-	sprite.play("hurt_swim" if _is_in_water() else "hurt_fly")
+	if hit_count >= max_hits:
+		sprite.play("stun")
+	else:
+		sprite.play("hurt_swim" if _is_in_water() else "hurt_fly")
 	hit_registered.emit(hit_count)
 	status_changed.emit(_status_text(), hit_count, in_smoke)
 	get_tree().create_timer(1.0, true, false, true).timeout.connect(_clear_invulnerability)
@@ -115,16 +124,29 @@ func exit_smoke() -> void:
 
 func enter_freedom_mode() -> void:
 	freedom_mode = true
+	stunned = false
 	controls_enabled = false
+	velocity = Vector2.ZERO
 	in_smoke = false
 	_smoke_sources = 0
 	status_changed.emit("Freedom", hit_count, in_smoke)
+
+func enter_stun_mode() -> void:
+	stunned = true
+	freedom_mode = false
+	controls_enabled = false
+	in_smoke = false
+	_smoke_sources = 0
+	velocity = Vector2(0.0, 260.0 if global_position.y < waterline_y else -90.0)
+	sprite.play("stun")
+	status_changed.emit(_status_text(), hit_count, in_smoke)
 
 func reset_status() -> void:
 	hit_count = 0
 	invulnerable = false
 	in_smoke = false
 	_smoke_sources = 0
+	stunned = false
 	status_changed.emit(_status_text(), hit_count, in_smoke)
 
 func _apply_water_motion(delta: float, input_vector: Vector2, slow: float) -> void:
@@ -135,7 +157,6 @@ func _apply_water_motion(delta: float, input_vector: Vector2, slow: float) -> vo
 	if input_vector.x > 0.1:
 		target_velocity.x += 90.0 * speed_multiplier * slow
 	velocity = velocity.move_toward(target_velocity, water_acceleration * delta)
-	velocity.y -= buoyancy * delta
 	velocity *= max(0.0, 1.0 - water_drag * delta)
 
 func _apply_air_motion(delta: float, input_vector: Vector2, slow: float) -> void:
@@ -170,7 +191,29 @@ func _update_camera_anchor() -> void:
 	_camera_center_x = max(_camera_center_x, global_position.x + camera_forward_offset)
 	camera.global_position = Vector2(_camera_center_x, waterline_y)
 
+func _apply_stun_motion(delta: float) -> void:
+	var surface_y := waterline_y + 8.0
+	velocity.x = move_toward(velocity.x, 0.0, 260.0 * delta)
+	if global_position.y < surface_y:
+		velocity.y = min(velocity.y + gravity * delta, 420.0)
+	elif global_position.y > surface_y:
+		velocity.y = max(velocity.y - water_acceleration * delta, -120.0)
+	else:
+		velocity.y = 0.0
+
+	move_and_slide()
+	if (velocity.y > 0.0 and global_position.y >= surface_y) or (velocity.y < 0.0 and global_position.y <= surface_y):
+		global_position.y = surface_y
+		velocity.y = 0.0
+	_update_camera_anchor()
+	if sprite.animation != &"stun":
+		sprite.play("stun")
+
 func _update_animation() -> void:
+	if stunned:
+		if sprite.animation != &"stun":
+			sprite.play("stun")
+		return
 	if String(sprite.animation).begins_with("hurt_") and sprite.is_playing():
 		return
 	if _is_in_water():

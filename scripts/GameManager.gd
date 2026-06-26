@@ -85,7 +85,7 @@ func _on_smoke_entered(hit_player: Node) -> void:
 		return
 	player.enter_smoke()
 	player.take_hit()
-	hurt_effect.set_smoke_active(true)
+	hurt_effect.set_smoke_active(game_active)
 
 func _on_smoke_exited(hit_player: Node) -> void:
 	if hit_player != player:
@@ -121,9 +121,10 @@ func _trigger_game_over() -> void:
 		return
 	game_active = false
 	Engine.time_scale = 1.0
-	player.set_control_enabled(false)
+	player.enter_stun_mode()
 	spawner.set_spawning_enabled(false)
 	hurt_effect.fade_to_clear()
+	await get_tree().create_timer(0.75).timeout
 	game_over.emit(score_meters)
 
 func _trigger_freedom() -> void:

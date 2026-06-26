@@ -174,19 +174,92 @@ layout_mode = 2
 [node name="StartButton" type="Button" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=725420558]
 custom_minimum_size = Vector2(250, 44)
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../CreditsButton")
 theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "Mulai Pelarian"
 
-[node name="ExitButton" type="Button" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=1522431330]
+[node name="CreditsButton" type="Button" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=1522431330]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath("../CreditsButton")
 theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "Keluar"
+
+[node name="CreditsPanel" type="PanelContainer" parent="MenuLayer/Root"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -154.0
+offset_right = 220.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuLayer/Root/CreditsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 26
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 1, 0.9, 1)
+theme_override_colors/font_shadow_color = Color(0.04, 0.13, 0.12, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 36
+text = "CREDITS"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79, 0.96, 0.91, 1)
+theme_override_font_sizes/font_size = 16
+text = "EXILE
+Game Programming UAS
+
+Design, Code, and Sprite Integration
+Sailfish Survival Project
+
+Built with Godot Engine"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "Kembali"

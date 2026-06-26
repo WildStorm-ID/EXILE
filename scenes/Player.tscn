@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bcy3xvin7ej3h" path="res://assets/sprites/player/flying_fish/hurtfly_1.png" id="17_hurtfly_1"]
 [ext_resource type="Texture2D" uid="uid://cqyf7viait06w" path="res://assets/sprites/player/flying_fish/hurtswim_0.png" id="18_hurtswim_0"]
 [ext_resource type="Texture2D" uid="uid://d60vr8tw3i7j" path="res://assets/sprites/player/flying_fish/hurtswim_1.png" id="19_hurtswim_1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/stun_0.png" id="20_stun_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/stun_1.png" id="21_stun_1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
@@ -80,6 +82,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("20_stun_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_stun_1")
+}],
+"loop": true,
+"name": &"stun",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_swim_0")
 }, {
 "duration": 1.0,
@@ -111,7 +124,7 @@ script = ExtResource("1_player_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2055498269]
 sprite_frames = SubResource("SpriteFrames_player")
-animation = &"hurt_fly"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=667681312]
