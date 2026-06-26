@@ -1,26 +1,26 @@
 [gd_scene format=3 uid="uid://vrnx64wrxte7"]
 
 [ext_resource type="Script" uid="uid://4byppr5tk8gh" path="res://scripts/Player.gd" id="1_player_script"]
-[ext_resource type="Texture2D" uid="uid://dq7x8hubgm8ml" path="res://assets/sprites/player/flying_fish/idle_0.png" id="2_idle_0"]
-[ext_resource type="Texture2D" uid="uid://dfxy7ixuleye6" path="res://assets/sprites/player/flying_fish/idle_1.png" id="3_idle_1"]
-[ext_resource type="Texture2D" uid="uid://dxpsfgsr6bvp6" path="res://assets/sprites/player/flying_fish/idle_2.png" id="4_idle_2"]
-[ext_resource type="Texture2D" uid="uid://c0ahq65kqu7xr" path="res://assets/sprites/player/flying_fish/idle_3.png" id="5_idle_3"]
-[ext_resource type="Texture2D" uid="uid://bom7s7aik4fij" path="res://assets/sprites/player/flying_fish/swim_0.png" id="6_swim_0"]
-[ext_resource type="Texture2D" uid="uid://cs37mh8frtskx" path="res://assets/sprites/player/flying_fish/swim_1.png" id="7_swim_1"]
-[ext_resource type="Texture2D" uid="uid://cnbf1xqieuqg7" path="res://assets/sprites/player/flying_fish/swim_2.png" id="8_swim_2"]
-[ext_resource type="Texture2D" uid="uid://coeiwaqltmw8d" path="res://assets/sprites/player/flying_fish/swim_3.png" id="9_swim_3"]
-[ext_resource type="Texture2D" uid="uid://cdrgktat3krpr" path="res://assets/sprites/player/flying_fish/swim_4.png" id="10_swim_4"]
-[ext_resource type="Texture2D" uid="uid://cw07xuphi52u3" path="res://assets/sprites/player/flying_fish/swim_5.png" id="11_swim_5"]
-[ext_resource type="Texture2D" uid="uid://dpgdg30cbt301" path="res://assets/sprites/player/flying_fish/fly_0.png" id="12_fly_0"]
-[ext_resource type="Texture2D" uid="uid://cqcxk6wesm5nb" path="res://assets/sprites/player/flying_fish/fly_1.png" id="13_fly_1"]
-[ext_resource type="Texture2D" uid="uid://y76aleqsgdnf" path="res://assets/sprites/player/flying_fish/fly_2.png" id="14_fly_2"]
-[ext_resource type="Texture2D" uid="uid://djjin2c3tcls1" path="res://assets/sprites/player/flying_fish/fly_3.png" id="15_fly_3"]
+[ext_resource type="Texture2D" uid="uid://dnr33k62h7aak" path="res://assets/sprites/player/flying_fish/idle_0.png" id="2_idle_0"]
+[ext_resource type="Texture2D" uid="uid://rb4xi5eqw5y1" path="res://assets/sprites/player/flying_fish/idle_1.png" id="3_idle_1"]
+[ext_resource type="Texture2D" uid="uid://fya63nw3qw0d" path="res://assets/sprites/player/flying_fish/idle_2.png" id="4_idle_2"]
+[ext_resource type="Texture2D" uid="uid://g0qbm47patlw" path="res://assets/sprites/player/flying_fish/idle_3.png" id="5_idle_3"]
+[ext_resource type="Texture2D" uid="uid://bnvmfnlws3asa" path="res://assets/sprites/player/flying_fish/swim_0.png" id="6_swim_0"]
+[ext_resource type="Texture2D" uid="uid://5iy466yshq2c" path="res://assets/sprites/player/flying_fish/swim_1.png" id="7_swim_1"]
+[ext_resource type="Texture2D" uid="uid://br3eats3ir07m" path="res://assets/sprites/player/flying_fish/swim_2.png" id="8_swim_2"]
+[ext_resource type="Texture2D" uid="uid://bcqytk0ee5dyt" path="res://assets/sprites/player/flying_fish/swim_3.png" id="9_swim_3"]
+[ext_resource type="Texture2D" uid="uid://dsa4xj3v5vhdy" path="res://assets/sprites/player/flying_fish/swim_4.png" id="10_swim_4"]
+[ext_resource type="Texture2D" uid="uid://mcynusq8mt2y" path="res://assets/sprites/player/flying_fish/swim_5.png" id="11_swim_5"]
+[ext_resource type="Texture2D" uid="uid://ownd3qpe32i3" path="res://assets/sprites/player/flying_fish/fly_0.png" id="12_fly_0"]
+[ext_resource type="Texture2D" uid="uid://sr4ng3psmg0" path="res://assets/sprites/player/flying_fish/fly_1.png" id="13_fly_1"]
+[ext_resource type="Texture2D" uid="uid://d1eg2x6aoqsyf" path="res://assets/sprites/player/flying_fish/fly_2.png" id="14_fly_2"]
+[ext_resource type="Texture2D" uid="uid://3riooqrqb6e3" path="res://assets/sprites/player/flying_fish/fly_3.png" id="15_fly_3"]
 [ext_resource type="Texture2D" uid="uid://bp6n4fniylc7n" path="res://assets/sprites/player/flying_fish/hurtfly_0.png" id="16_hurtfly_0"]
-[ext_resource type="Texture2D" uid="uid://bcy3xvin7ej3h" path="res://assets/sprites/player/flying_fish/hurtfly_1.png" id="17_hurtfly_1"]
-[ext_resource type="Texture2D" uid="uid://cqyf7viait06w" path="res://assets/sprites/player/flying_fish/hurtswim_0.png" id="18_hurtswim_0"]
-[ext_resource type="Texture2D" uid="uid://d60vr8tw3i7j" path="res://assets/sprites/player/flying_fish/hurtswim_1.png" id="19_hurtswim_1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/stun_0.png" id="20_stun_0"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/stun_1.png" id="21_stun_1"]
+[ext_resource type="Texture2D" uid="uid://bid4q7lucfd6n" path="res://assets/sprites/player/flying_fish/hurtfly_1.png" id="17_hurtfly_1"]
+[ext_resource type="Texture2D" uid="uid://b3qa55ijq6pe8" path="res://assets/sprites/player/flying_fish/hurtswim_0.png" id="18_hurtswim_0"]
+[ext_resource type="Texture2D" uid="uid://dwgchwsjwhqfj" path="res://assets/sprites/player/flying_fish/hurtswim_1.png" id="19_hurtswim_1"]
+[ext_resource type="Texture2D" uid="uid://mpnfe6jypa2j" path="res://assets/sprites/player/flying_fish/stun_0.png" id="20_stun_0"]
+[ext_resource type="Texture2D" uid="uid://cs4q6lhyix6ns" path="res://assets/sprites/player/flying_fish/stun_1.png" id="21_stun_1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
@@ -124,11 +124,11 @@ script = ExtResource("1_player_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2055498269]
 sprite_frames = SubResource("SpriteFrames_player")
-animation = &"idle"
+animation = &"swim"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=667681312]
-position = Vector2(8, 12)
+position = Vector2(6, 13)
 shape = SubResource("RectangleShape2D_player")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1464558318]
