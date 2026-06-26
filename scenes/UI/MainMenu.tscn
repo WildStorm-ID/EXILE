@@ -181,7 +181,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "Mulai Pelarian"
 
-[node name="CreditsButton" type="Button" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer" unique_id=1871710555]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 focus_neighbor_top = NodePath("../StartButton")
@@ -202,7 +202,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "Keluar"
 
-[node name="CreditsPanel" type="PanelContainer" parent="MenuLayer/Root"]
+[node name="CreditsPanel" type="PanelContainer" parent="MenuLayer/Root" unique_id=1407271036]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -218,19 +218,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="MarginContainer" type="MarginContainer" parent="MenuLayer/Root/CreditsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MenuLayer/Root/CreditsPanel" unique_id=237314661]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 26
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 26
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer" unique_id=49567476]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Title" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer" unique_id=295623185]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 1, 0.9, 1)
 theme_override_colors/font_shadow_color = Color(0.04, 0.13, 0.12, 1)
@@ -240,22 +240,26 @@ theme_override_font_sizes/font_size = 36
 text = "CREDITS"
 horizontal_alignment = 1
 
-[node name="Body" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer"]
+[node name="Body" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer" unique_id=88909140]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.79, 0.96, 0.91, 1)
 theme_override_font_sizes/font_size = 16
-text = "EXILE
-Game Programming UAS
+text = "Developed by:
+Hati Jiwa Wira (HAJIWARA)
 
-Design, Code, and Sprite Integration
-Sailfish Survival Project
+[ TEAM DEVELOPER ]
+• Ahmad Hafidz Muhaimin
+• Jonatan Arya Santosa
+• Wilda Putra Cahya Ramadhan
 
-Built with Godot Engine"
+[ GAME ENGINE ]
+• Built with Godot Engine
+  (godotengine.org/license)"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="BackButton" type="Button" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer" unique_id=1821109072]
 custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
