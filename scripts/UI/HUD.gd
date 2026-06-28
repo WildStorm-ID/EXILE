@@ -9,9 +9,6 @@ const MAIN_MENU_SCENE := "res://scenes/UI/MainMenu.tscn"
 @onready var score_label: Label = $Root/TopBar/ScoreBox/ScoreLabel
 @onready var health_fill: ColorRect = $Root/TopBar/HealthBar/Fill
 @onready var health_shine: ColorRect = $Root/TopBar/HealthBar/Shine
-@onready var status_label: Label = $Root/TopBar/StatusLabel
-@onready var zone_label: Label = $Root/TopBar/ZoneLabel
-@onready var speed_label: Label = $Root/TopBar/SpeedLabel
 @onready var freedom_banner: TextureRect = $Root/Center/FreedomBanner
 @onready var result_panel: PanelContainer = $Root/Center/ResultPanel
 @onready var result_title: Label = $Root/Center/ResultPanel/MarginContainer/VBoxContainer/ResultTitle
@@ -29,24 +26,14 @@ func _ready() -> void:
 func set_score(score_meters: int) -> void:
 	score_label.text = "%05d m" % score_meters
 
-func set_speed(speed_multiplier: float) -> void:
-	speed_label.text = "Speed x%.2f" % speed_multiplier
+#func set_speed(speed_multiplier: float) -> void:
+	#pass
 
-func set_status(status_text: String, hit_count: int, in_smoke: bool) -> void:
-	var markers := ""
-	for index in range(MAX_STATUS_HITS):
-		markers += "X" if index < hit_count else "-"
-	status_label.text = "Status %s  Hits [%s]" % [status_text, markers]
+func set_status(_status_text: String, hit_count: int, _in_smoke: bool) -> void:
 	_update_health_bar(hit_count)
-	if in_smoke:
-		status_label.add_theme_color_override("font_color", Color(0.75, 0.92, 0.55))
-	elif hit_count >= 2:
-		status_label.add_theme_color_override("font_color", Color(1.0, 0.44, 0.35))
-	else:
-		status_label.add_theme_color_override("font_color", Color(0.94, 0.98, 1.0))
 
-func set_zone(in_water: bool) -> void:
-	zone_label.text = "Water" if in_water else "Air"
+#func set_zone(in_water: bool) -> void:
+	#pass
 
 func show_freedom(final_score: int) -> void:
 	set_score(final_score)

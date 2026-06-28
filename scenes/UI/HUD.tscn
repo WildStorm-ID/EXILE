@@ -67,15 +67,15 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 1
 offset_top = 5.0
-offset_right = 108.0
-offset_bottom = 21.0
+offset_right = 253.0
+offset_bottom = 35.0
 mouse_filter = 2
 color = Color(0.04, 0.02, 0.025, 0.92)
 
 [node name="BorderTop" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=1897080753]
 layout_mode = 1
 offset_top = 5.0
-offset_right = 108.0
+offset_right = 253.0
 offset_bottom = 7.0
 mouse_filter = 2
 color = Color(0.62, 0.1, 0.1, 1)
@@ -83,7 +83,7 @@ color = Color(0.62, 0.1, 0.1, 1)
 [node name="BorderBottom" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=1776527468]
 layout_mode = 1
 offset_top = 35.0
-offset_right = 108.0
+offset_right = 253.0
 offset_bottom = 37.0
 mouse_filter = 2
 color = Color(0.08, 0.01, 0.015, 1)
@@ -92,16 +92,16 @@ color = Color(0.08, 0.01, 0.015, 1)
 layout_mode = 1
 offset_top = 5.0
 offset_right = 2.0
-offset_bottom = 21.0
+offset_bottom = 37.0
 mouse_filter = 2
 color = Color(0.08, 0.01, 0.015, 1)
 
 [node name="BorderRight" type="ColorRect" parent="Root/TopBar/HealthBar" unique_id=208721709]
 layout_mode = 1
-offset_left = 106.0
+offset_left = 251.0
 offset_top = 5.0
-offset_right = 108.0
-offset_bottom = 21.0
+offset_right = 253.0
+offset_bottom = 37.0
 mouse_filter = 2
 color = Color(0.08, 0.01, 0.015, 1)
 
@@ -109,7 +109,7 @@ color = Color(0.08, 0.01, 0.015, 1)
 layout_mode = 1
 offset_left = 4.0
 offset_top = 9.0
-offset_right = 104.0
+offset_right = 251.0
 offset_bottom = 33.0
 mouse_filter = 2
 color = Color(0.9, 0.04, 0.04, 1)
@@ -118,28 +118,10 @@ color = Color(0.9, 0.04, 0.04, 1)
 layout_mode = 1
 offset_left = 5.0
 offset_top = 10.0
-offset_right = 103.0
+offset_right = 250.0
 offset_bottom = 12.0
 mouse_filter = 2
 color = Color(1, 0.34, 0.3, 1)
-
-[node name="StatusLabel" type="Label" parent="Root/TopBar" unique_id=649226257]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
-text = "Status Stable  Hits [---]"
-
-[node name="ZoneLabel" type="Label" parent="Root/TopBar" unique_id=191060682]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0.82, 0.94, 1, 1)
-text = "Water"
-
-[node name="SpeedLabel" type="Label" parent="Root/TopBar" unique_id=148651948]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0.82, 0.94, 1, 1)
-text = "Speed x1.00"
 
 [node name="Spacer" type="Control" parent="Root/TopBar" unique_id=1041245165]
 layout_mode = 2

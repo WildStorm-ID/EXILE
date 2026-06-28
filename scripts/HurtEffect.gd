@@ -49,6 +49,10 @@ func fade_to_clear() -> void:
 	Engine.time_scale = 1.0
 	_smoke_active = false
 	_hit_token += 1
+	if _brightness_tween:
+		_brightness_tween.kill()
+	_brightness_tween = create_tween()
+	_brightness_tween.tween_property(brightness_overlay, "modulate:a", 0.0, 0.25)
 	_tween_damage_alpha(0.0, 0.3)
 
 func _tween_damage_alpha(target_alpha: float, duration: float) -> void:

@@ -154,6 +154,7 @@ func _build_object(data: Dictionary, is_item: bool) -> Area2D:
 	object.body_entered.connect(_on_object_body_entered.bind(object))
 
 	var sprite := AnimatedSprite2D.new()
+	sprite.scale = Vector2(1.5, 1.5)
 	sprite.sprite_frames = _sprite_frames(data["frames"], "idle")
 	sprite.animation = &"idle"
 	sprite.play()
