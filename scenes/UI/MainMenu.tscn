@@ -237,25 +237,25 @@ theme_override_font_sizes/font_size = 36
 text = "CREDITS"
 horizontal_alignment = 1
 
-[node name="Columns" type="HBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer"]
+[node name="Columns" type="HBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer" unique_id=844884940]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 28
 
-[node name="DeveloperColumn" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns"]
+[node name="DeveloperColumn" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns" unique_id=1107041260]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="DeveloperTitle" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/DeveloperColumn"]
+[node name="DeveloperTitle" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/DeveloperColumn" unique_id=2080565023]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 1, 0.9, 1)
 theme_override_font_sizes/font_size = 24
 text = "Developer"
 horizontal_alignment = 1
 
-[node name="DeveloperBody" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/DeveloperColumn"]
+[node name="DeveloperBody" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/DeveloperColumn" unique_id=400322091]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.79, 0.96, 0.91, 1)
@@ -274,26 +274,26 @@ Hati Jiwa Wira (HAJIWARA)
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="AssetColumn" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns"]
+[node name="AssetColumn" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns" unique_id=504106998]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="AssetTitle" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/AssetColumn"]
+[node name="AssetTitle" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/AssetColumn" unique_id=1918400309]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 1, 0.9, 1)
 theme_override_font_sizes/font_size = 24
 text = "Assets"
 horizontal_alignment = 1
 
-[node name="AssetBody" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/AssetColumn"]
+[node name="AssetBody" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/AssetColumn" unique_id=1783445115]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.79, 0.96, 0.91, 1)
 theme_override_font_sizes/font_size = 16
 text = "[ SPRITES ]
-• Finzo player animation
+• Finzo flyingfish animation
 • Hazard objects
 • Powerup items
 • HUD elements
