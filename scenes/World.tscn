@@ -25,6 +25,7 @@ shader_parameter/softness = 0.36
 [node name="World" type="Node2D" unique_id=1946118258]
 script = ExtResource("1_game_manager")
 speed_step_distance = 200
+level_start_distance = 100
 
 [node name="ZoneBackdrop" type="CanvasLayer" parent="." unique_id=1116698473]
 layer = -200

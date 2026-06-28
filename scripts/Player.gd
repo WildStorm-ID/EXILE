@@ -177,11 +177,11 @@ func reset_status() -> void:
 	speed_boost_active = false
 	status_changed.emit(_status_text(), hit_count, in_smoke)
 
-func reset_for_level(position: Vector2) -> void:
+func reset_for_level(newposition: Vector2) -> void:
 	reset_status()
 	controls_enabled = true
 	velocity = Vector2.ZERO
-	global_position = position
+	global_position = newposition
 	_camera_center_x = global_position.x + camera_forward_offset
 	_update_camera_anchor()
 	sprite.play("idle")

@@ -9,7 +9,7 @@ signal freedom_reached(final_score: int)
 @export var pixels_per_meter := 10.0
 @export var speed_step_distance := 500
 @export var level_start_distance := 1000
-@export var level_distance_step := 500
+@export var level_distance_step := 1000
 @export var freedom_distance := 5000
 @export var waterline_y := 300.0
 
