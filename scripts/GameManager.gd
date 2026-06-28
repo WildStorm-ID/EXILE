@@ -8,7 +8,9 @@ signal freedom_reached(final_score: int)
 
 @export var pixels_per_meter := 10.0
 @export var speed_step_distance := 500
-@export var freedom_distance := 1000
+@export var level_start_distance := 1000
+@export var level_distance_step := 500
+@export var freedom_distance := 5000
 @export var waterline_y := 300.0
 
 @onready var player: Node = $Player
@@ -27,6 +29,8 @@ var score_meters := 0
 var speed_multiplier := 1.0
 var game_active := true
 var ending_started := false
+var current_level := 1
+var current_target_distance := 1000
 
 func _ready() -> void:
 	Engine.time_scale = 1.0
@@ -41,15 +45,19 @@ func _ready() -> void:
 	player.zone_changed.connect(hud.set_zone)
 	player.splash_requested.connect(_play_splash)
 	player.flap_requested.connect(_on_player_flap)
-	spawner.obstacle_spawned.connect(_on_obstacle_spawned)
+	spawner.hazard_hit.connect(_on_hazard_hit)
+	spawner.item_collected.connect(_on_item_collected)
 	score_changed.connect(hud.set_score)
 	speed_changed.connect(hud.set_speed)
 	game_over.connect(hud.show_game_over)
 	freedom_reached.connect(hud.show_freedom)
+	hud.next_level_requested.connect(_on_next_level_requested)
 
 	bgm.finished.connect(bgm.play)
 	bgm.play()
 
+	current_target_distance = level_start_distance
+	spawner.set_level(current_level - 1)
 	score_changed.emit(score_meters)
 	speed_changed.emit(speed_multiplier)
 
@@ -64,34 +72,22 @@ func _process(_delta: float) -> void:
 		score_changed.emit(score_meters)
 		_update_speed_for_score()
 
-	if score_meters >= freedom_distance and not ending_started:
+	if score_meters >= current_target_distance and not ending_started:
 		_trigger_freedom()
 
-func _on_obstacle_spawned(obstacle: Node) -> void:
-	if obstacle.has_signal("player_hit"):
-		obstacle.player_hit.connect(_on_obstacle_player_hit)
-	if obstacle.has_signal("smoke_entered"):
-		obstacle.smoke_entered.connect(_on_smoke_entered)
-	if obstacle.has_signal("smoke_exited"):
-		obstacle.smoke_exited.connect(_on_smoke_exited)
-
-func _on_obstacle_player_hit(hit_player: Node) -> void:
+func _on_hazard_hit(hit_player: Node) -> void:
 	if not game_active or hit_player != player:
 		return
 	player.take_hit()
 
-func _on_smoke_entered(hit_player: Node) -> void:
+func _on_item_collected(item_type: StringName, hit_player: Node) -> void:
 	if not game_active or hit_player != player:
 		return
-	player.enter_smoke()
-	player.take_hit()
-	hurt_effect.set_smoke_active(game_active)
-
-func _on_smoke_exited(hit_player: Node) -> void:
-	if hit_player != player:
-		return
-	player.exit_smoke()
-	hurt_effect.set_smoke_active(player.in_smoke)
+	match item_type:
+		&"hp":
+			player.heal_one()
+		&"speed":
+			player.apply_speed_boost()
 
 func _on_player_hit_registered(hit_count: int) -> void:
 	hurt_sfx.play()
@@ -144,4 +140,26 @@ func _trigger_freedom() -> void:
 	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player, "global_position", player.global_position + Vector2(760.0, -80.0), 3.0)
 	await tween.finished
-	hud.show_win_screen(score_meters)
+	hud.show_win_screen(score_meters, current_level, current_target_distance, current_target_distance < freedom_distance)
+
+func _on_next_level_requested() -> void:
+	if current_target_distance >= freedom_distance:
+		get_tree().reload_current_scene()
+		return
+
+	current_level += 1
+	current_target_distance = mini(freedom_distance, level_start_distance + (current_level - 1) * level_distance_step)
+	ending_started = false
+	game_active = true
+	speed_multiplier = 1.0
+	var next_start_x := start_x + float(score_meters) * pixels_per_meter
+	player.reset_for_level(Vector2(next_start_x, 360.0))
+	player.set_speed_multiplier(speed_multiplier)
+	spawner.clear_obstacles()
+	spawner.set_world_speed(speed_multiplier)
+	spawner.set_level(current_level - 1)
+	spawner.set_spawning_enabled(true)
+	hurt_effect.fade_to_clear()
+	hud.hide_result()
+	score_changed.emit(score_meters)
+	speed_changed.emit(speed_multiplier)

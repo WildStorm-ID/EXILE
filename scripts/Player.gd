@@ -6,6 +6,8 @@ signal status_changed(status_text: String, hit_count: int, in_smoke: bool)
 signal zone_changed(in_water: bool)
 signal splash_requested
 signal flap_requested(in_water: bool)
+signal healed(hit_count: int)
+signal speed_boost_changed(active: bool)
 
 @export var waterline_y := 300.0
 @export var max_hits := 3
@@ -19,6 +21,8 @@ signal flap_requested(in_water: bool)
 @export var gravity := 760.0
 @export var flap_force := 345.0
 @export var smoke_slow_factor := 0.55
+@export var speed_boost_multiplier := 1.55
+@export var speed_boost_duration := 3.0
 @export var camera_left_margin := 44.0
 @export var camera_forward_offset := 150.0
 @export var vertical_margin := 42.0
@@ -33,10 +37,12 @@ var invulnerable := false
 var in_smoke := false
 var freedom_mode := false
 var stunned := false
+var speed_boost_active := false
 
 var _last_in_water := true
 var _smoke_sources := 0
 var _camera_center_x := 0.0
+var _speed_boost_timer: SceneTreeTimer
 
 func _ready() -> void:
 	_ensure_input_actions()
@@ -74,11 +80,12 @@ func _physics_process(delta: float) -> void:
 
 	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var slow := smoke_slow_factor if in_smoke else 1.0
+	var boost := speed_boost_multiplier if speed_boost_active else 1.0
 
 	if in_water:
-		_apply_water_motion(delta, input_vector, slow)
+		_apply_water_motion(delta, input_vector, slow * boost)
 	else:
-		_apply_air_motion(delta, input_vector, slow)
+		_apply_air_motion(delta, input_vector, slow * boost)
 
 	if Input.is_action_just_pressed("flap"):
 		if in_water:
@@ -107,6 +114,25 @@ func take_hit() -> bool:
 	status_changed.emit(_status_text(), hit_count, in_smoke)
 	get_tree().create_timer(1.0, true, false, true).timeout.connect(_clear_invulnerability)
 	return true
+
+func heal_one() -> bool:
+	if hit_count <= 0 or stunned or freedom_mode:
+		return false
+	hit_count -= 1
+	status_changed.emit(_status_text(), hit_count, in_smoke)
+	healed.emit(hit_count)
+	return true
+
+func apply_speed_boost() -> void:
+	speed_boost_active = true
+	speed_boost_changed.emit(true)
+	_speed_boost_timer = get_tree().create_timer(speed_boost_duration)
+	var active_timer := _speed_boost_timer
+	await active_timer.timeout
+	if _speed_boost_timer != active_timer:
+		return
+	speed_boost_active = false
+	speed_boost_changed.emit(false)
 
 func set_speed_multiplier(value: float) -> void:
 	speed_multiplier = max(value, 0.1)
@@ -146,8 +172,19 @@ func reset_status() -> void:
 	invulnerable = false
 	in_smoke = false
 	_smoke_sources = 0
+	freedom_mode = false
 	stunned = false
+	speed_boost_active = false
 	status_changed.emit(_status_text(), hit_count, in_smoke)
+
+func reset_for_level(position: Vector2) -> void:
+	reset_status()
+	controls_enabled = true
+	velocity = Vector2.ZERO
+	global_position = position
+	_camera_center_x = global_position.x + camera_forward_offset
+	_update_camera_anchor()
+	sprite.play("idle")
 
 func _apply_water_motion(delta: float, input_vector: Vector2, slow: float) -> void:
 	var target_velocity := Vector2(

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8qc666okxk15"
-path="res://.godot/imported/polusi_asap_1.png-f59a76bc28dfd0b1673233e7b8758fb0.ctex"
+uid="uid://diuuv6sb1hvn3"
+path="res://.godot/imported/trashbag_1.png-a02562eb453dccf6994afc60cc4267f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/polusi_asap_1.png"
-dest_files=["res://.godot/imported/polusi_asap_1.png-f59a76bc28dfd0b1673233e7b8758fb0.ctex"]
+source_file="res://assets/sprites/objects/hazards/trashbag_1.png"
+dest_files=["res://.godot/imported/trashbag_1.png-a02562eb453dccf6994afc60cc4267f2.ctex"]
 
 [params]
 

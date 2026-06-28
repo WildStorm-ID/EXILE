@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y4lorj2gpmsh"
-path="res://.godot/imported/polusi_asap_preview.png-87350a2566f2b04acd38c4c8ab0fe20f.ctex"
+uid="uid://bmphbg4f4gcct"
+path="res://.godot/imported/papercup_0.png-b77dc4da3ac7bb1292b0610363f88bc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/polusi_asap_preview.png"
-dest_files=["res://.godot/imported/polusi_asap_preview.png-87350a2566f2b04acd38c4c8ab0fe20f.ctex"]
+source_file="res://assets/sprites/objects/hazards/papercup_0.png"
+dest_files=["res://.godot/imported/papercup_0.png-b77dc4da3ac7bb1292b0610363f88bc3.ctex"]
 
 [params]
 

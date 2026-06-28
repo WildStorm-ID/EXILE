@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxpj1p3tem4vh"
-path="res://.godot/imported/obstacles_pixel_preview.png-c7610aa9d3424bb380464a6cc51b5392.ctex"
+uid="uid://jmiigmouie6d"
+path="res://.godot/imported/bottle_0.png-8f6c3c445ea33423342e421486914e3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/obstacles_pixel_preview.png"
-dest_files=["res://.godot/imported/obstacles_pixel_preview.png-c7610aa9d3424bb380464a6cc51b5392.ctex"]
+source_file="res://assets/sprites/objects/hazards/bottle_0.png"
+dest_files=["res://.godot/imported/bottle_0.png-8f6c3c445ea33423342e421486914e3e.ctex"]
 
 [params]
 

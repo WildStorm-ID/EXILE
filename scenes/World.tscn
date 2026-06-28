@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://cmt3mbtdbncso" path="res://scripts/GameManager.gd" id="1_game_manager"]
 [ext_resource type="PackedScene" uid="uid://vrnx64wrxte7" path="res://scenes/Player.tscn" id="2_player_scene"]
 [ext_resource type="Script" uid="uid://c80smsl36yonb" path="res://scripts/ObstacleSpawner.gd" id="3_spawner_script"]
-[ext_resource type="PackedScene" path="res://scenes/obstacles/SeaMine.tscn" id="4_sea_mine_scene"]
-[ext_resource type="PackedScene" path="res://scenes/obstacles/WasteBarrel.tscn" id="5_waste_barrel_scene"]
-[ext_resource type="PackedScene" path="res://scenes/obstacles/SmokeCloud.tscn" id="6_smoke_cloud_scene"]
 [ext_resource type="PackedScene" uid="uid://bfmlcon4bt0ja" path="res://scenes/UI/HUD.tscn" id="7_hud_scene"]
 [ext_resource type="Script" uid="uid://dphga7fyub3vw" path="res://scripts/HurtEffect.gd" id="8_hurt_script"]
 [ext_resource type="Texture2D" uid="uid://da3ws4ubr5f3" path="res://assets/backgrounds/sky_water_overlay.png" id="9_sky_water"]
@@ -72,11 +69,6 @@ script = ExtResource("18_water_gameplay")
 
 [node name="ObstacleSpawner" type="Node2D" parent="." unique_id=163474368]
 script = ExtResource("3_spawner_script")
-sea_mine_scene = ExtResource("4_sea_mine_scene")
-waste_barrel_scene = ExtResource("5_waste_barrel_scene")
-smoke_cloud_scene = ExtResource("6_smoke_cloud_scene")
-min_interval = 0.5
-max_interval = 1.0
 
 [node name="SpawnTimer" type="Timer" parent="ObstacleSpawner" unique_id=1258211154]
 one_shot = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgpcu13ggmi6r"
-path="res://.godot/imported/smoke_cloud_2.png-7480366dfda364ce28e98b6a4772d469.ctex"
+uid="uid://cn6heakcrhwgg"
+path="res://.godot/imported/hp_1.png-851c2da5c5c2e3a8bd4f9d719a797e74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/smoke_cloud_2.png"
-dest_files=["res://.godot/imported/smoke_cloud_2.png-7480366dfda364ce28e98b6a4772d469.ctex"]
+source_file="res://assets/sprites/objects/items/hp_1.png"
+dest_files=["res://.godot/imported/hp_1.png-851c2da5c5c2e3a8bd4f9d719a797e74.ctex"]
 
 [params]
 

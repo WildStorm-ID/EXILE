@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmypituh2axlv"
-path="res://.godot/imported/smoke_cloud_1.png-c537b24987a90249fb8be064d993d3d9.ctex"
+uid="uid://dy2ickko2lik8"
+path="res://.godot/imported/straw_1.png-4ca247a5d97778b52d71634add4cd0b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/smoke_cloud_1.png"
-dest_files=["res://.godot/imported/smoke_cloud_1.png-c537b24987a90249fb8be064d993d3d9.ctex"]
+source_file="res://assets/sprites/objects/hazards/straw_1.png"
+dest_files=["res://.godot/imported/straw_1.png-4ca247a5d97778b52d71634add4cd0b7.ctex"]
 
 [params]
 

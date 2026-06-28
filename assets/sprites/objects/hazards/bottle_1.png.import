@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvhd24y5ibatq"
-path="res://.godot/imported/limbah_pabrik_preview.png-afde7af18f83d845bdbcec6896e1eba0.ctex"
+uid="uid://cwmctb4keix4v"
+path="res://.godot/imported/bottle_1.png-1b7e305aaef66ec52ce044f54e169c46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/limbah_pabrik_preview.png"
-dest_files=["res://.godot/imported/limbah_pabrik_preview.png-afde7af18f83d845bdbcec6896e1eba0.ctex"]
+source_file="res://assets/sprites/objects/hazards/bottle_1.png"
+dest_files=["res://.godot/imported/bottle_1.png-1b7e305aaef66ec52ce044f54e169c46.ctex"]
 
 [params]
 

@@ -1,6 +1,8 @@
 class_name HUD
 extends CanvasLayer
 
+signal next_level_requested
+
 const MAX_STATUS_HITS := 3
 const MAIN_MENU_SCENE := "res://scenes/UI/MainMenu.tscn"
 
@@ -51,9 +53,10 @@ func show_freedom(final_score: int) -> void:
 	var tween := create_tween()
 	tween.tween_property(freedom_banner, "modulate:a", 1.0, 1.0)
 
-func show_win_screen(final_score: int) -> void:
+func show_win_screen(final_score: int, level: int = 1, target_distance: int = 0, has_next_level: bool = false) -> void:
 	result_title.text = "AIR BEBAS"
-	result_score.text = "Jarak pelarian: %d m" % final_score
+	result_score.text = "Level %d selesai: %d m" % [level, target_distance if target_distance > 0 else final_score]
+	restart_button.text = "Next Level" if has_next_level else "Coba Lagi"
 	freedom_banner.hide()
 	result_panel.show()
 	restart_button.grab_focus()
@@ -61,9 +64,15 @@ func show_win_screen(final_score: int) -> void:
 func show_game_over(final_score: int) -> void:
 	result_title.text = "TEWAS MENGENASKAN"
 	result_score.text = "Bertahan sejauh: %d m" % final_score
+	restart_button.text = "Coba Lagi"
 	freedom_banner.hide()
 	result_panel.show()
 	restart_button.grab_focus()
+
+func hide_result() -> void:
+	result_panel.hide()
+	freedom_banner.show()
+	freedom_banner.modulate.a = 0.0
 
 func _update_health_bar(hit_count: int) -> void:
 	var remaining := clampi(MAX_STATUS_HITS - hit_count, 0, MAX_STATUS_HITS)
@@ -72,7 +81,10 @@ func _update_health_bar(hit_count: int) -> void:
 	health_shine.scale.x = ratio
 
 func _on_restart_pressed() -> void:
-	get_tree().reload_current_scene()
+	if restart_button.text == "Next Level":
+		next_level_requested.emit()
+	else:
+		get_tree().reload_current_scene()
 
 func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_file(MAIN_MENU_SCENE)

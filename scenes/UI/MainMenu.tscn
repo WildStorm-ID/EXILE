@@ -205,15 +205,13 @@ text = "Keluar"
 [node name="CreditsPanel" type="PanelContainer" parent="MenuLayer/Root" unique_id=1407271036]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = -154.0
-offset_right = 220.0
-offset_bottom = 154.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = 32.0
+offset_right = -34.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
@@ -227,8 +225,7 @@ theme_override_constants/margin_bottom = 26
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer" unique_id=49567476]
 layout_mode = 2
-theme_override_constants/separation = 12
-alignment = 1
+theme_override_constants/separation = 18
 
 [node name="Title" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer" unique_id=295623185]
 layout_mode = 2
@@ -240,9 +237,27 @@ theme_override_font_sizes/font_size = 36
 text = "CREDITS"
 horizontal_alignment = 1
 
-[node name="Body" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer" unique_id=88909140]
-custom_minimum_size = Vector2(360, 0)
+[node name="Columns" type="HBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 28
+
+[node name="DeveloperColumn" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="DeveloperTitle" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/DeveloperColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 1, 0.9, 1)
+theme_override_font_sizes/font_size = 24
+text = "Developer"
+horizontal_alignment = 1
+
+[node name="DeveloperBody" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/DeveloperColumn"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.79, 0.96, 0.91, 1)
 theme_override_font_sizes/font_size = 16
 text = "Developed by:
@@ -256,6 +271,40 @@ Hati Jiwa Wira (HAJIWARA)
 [ GAME ENGINE ]
 • Built with Godot Engine
   (godotengine.org/license)"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="AssetColumn" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="AssetTitle" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/AssetColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 1, 0.9, 1)
+theme_override_font_sizes/font_size = 24
+text = "Assets"
+horizontal_alignment = 1
+
+[node name="AssetBody" type="Label" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns/AssetColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.79, 0.96, 0.91, 1)
+theme_override_font_sizes/font_size = 16
+text = "[ SPRITES ]
+• Finzo player animation
+• Hazard objects
+• Powerup items
+• HUD elements
+
+[ ENVIRONMENT ]
+• Brantas river backdrop
+• Factory pollution layers
+• Water and bubble effects
+
+[ AUDIO ]
+• Movement, hit, ambient, and fanfare SFX"
 horizontal_alignment = 1
 autowrap_mode = 3
 

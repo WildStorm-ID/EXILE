@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4lq1aukg31rv"
-path="res://.godot/imported/sea_mine_0.png-ae61d418efa7231be04e74b79be2b461.ctex"
+uid="uid://bmi2d5akp2i6"
+path="res://.godot/imported/speed_0.png-c1302db5bc83c4963aeff6a796f64865.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/sea_mine_0.png"
-dest_files=["res://.godot/imported/sea_mine_0.png-ae61d418efa7231be04e74b79be2b461.ctex"]
+source_file="res://assets/sprites/objects/items/speed_0.png"
+dest_files=["res://.godot/imported/speed_0.png-c1302db5bc83c4963aeff6a796f64865.ctex"]
 
 [params]
 

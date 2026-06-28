@@ -3,6 +3,7 @@ extends Node2D
 const WORLD_SCENE := "res://scenes/World.tscn"
 
 @onready var parallax_background: ParallaxBackground = $ParallaxBackground
+@onready var menu_panel: PanelContainer = $MenuLayer/Root/MenuPanel
 @onready var start_button: Button = $MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer/StartButton
 @onready var credits_button: Button = $MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer/CreditsButton
 @onready var exit_button: Button = $MenuLayer/Root/MenuPanel/MarginContainer/VBoxContainer/ExitButton
@@ -33,11 +34,13 @@ func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file(WORLD_SCENE)
 
 func _on_credits_pressed() -> void:
+	menu_panel.hide()
 	credits_panel.show()
 	credits_back_button.grab_focus()
 
 func _on_credits_back_pressed() -> void:
 	credits_panel.hide()
+	menu_panel.show()
 	credits_button.grab_focus()
 
 func _on_exit_pressed() -> void:

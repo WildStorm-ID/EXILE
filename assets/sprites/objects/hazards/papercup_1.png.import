@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf0cllrbg0vk6"
-path="res://.godot/imported/waste_barrel_1.png-3be95668d03015d05480e5d160df97e6.ctex"
+uid="uid://x3505fms8oh6"
+path="res://.godot/imported/papercup_1.png-a454d251facfc2277d0f87dd007e7704.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/waste_barrel_1.png"
-dest_files=["res://.godot/imported/waste_barrel_1.png-3be95668d03015d05480e5d160df97e6.ctex"]
+source_file="res://assets/sprites/objects/hazards/papercup_1.png"
+dest_files=["res://.godot/imported/papercup_1.png-a454d251facfc2277d0f87dd007e7704.ctex"]
 
 [params]
 

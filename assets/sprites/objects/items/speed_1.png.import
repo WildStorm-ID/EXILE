@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rcofsof2l7f"
-path="res://.godot/imported/waste_barrel_0.png-e53a6b5a5e388faedde2bedc02f62f65.ctex"
+uid="uid://bqp22n2cg8gj6"
+path="res://.godot/imported/speed_1.png-51b814287346cadcd74a8498201c9627.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/obstacles/waste_barrel_0.png"
-dest_files=["res://.godot/imported/waste_barrel_0.png-e53a6b5a5e388faedde2bedc02f62f65.ctex"]
+source_file="res://assets/sprites/objects/items/speed_1.png"
+dest_files=["res://.godot/imported/speed_1.png-51b814287346cadcd74a8498201c9627.ctex"]
 
 [params]
 
