@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://2cv06hmnrndp" path="res://assets/audio/splash.wav" id="14_splash"]
 [ext_resource type="AudioStream" uid="uid://dpcqo32xlfoa" path="res://assets/audio/flap.wav" id="15_flap"]
 [ext_resource type="AudioStream" uid="uid://bdj8xt8dx6dgh" path="res://assets/audio/hurt.wav" id="16_hurt"]
-[ext_resource type="AudioStream" uid="uid://bojg2jfg2li13" path="res://assets/audio/win_fanfare.wav" id="17_win"]
+[ext_resource type="AudioStream" uid="uid://bojg2jfg2li13" path="res://assets/audio/win.wav" id="17_win"]
 [ext_resource type="Script" uid="uid://epfp12siy2x" path="res://scripts/WaterGameplay.gd" id="18_water_gameplay"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
@@ -119,6 +119,7 @@ volume_db = -5.0
 
 [node name="Flap" type="AudioStreamPlayer" parent="SFX" unique_id=508946527]
 stream = ExtResource("15_flap")
+volume_db = -2.0
 
 [node name="Hurt" type="AudioStreamPlayer" parent="SFX" unique_id=1852596100]
 stream = ExtResource("16_hurt")

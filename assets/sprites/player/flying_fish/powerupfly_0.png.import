@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3vqvq0gugpft"
-path="res://.godot/imported/stun_1.png-ece715ddfcf64bd7560f1435c4ba1e12.ctex"
+uid="uid://b3c0dto1duw4p"
+path="res://.godot/imported/powerupfly_0.png-21025b36496a07d429aa019dd2e01c01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/flying_fish/stun_1.png"
-dest_files=["res://.godot/imported/stun_1.png-ece715ddfcf64bd7560f1435c4ba1e12.ctex"]
+source_file="res://assets/sprites/player/flying_fish/powerupfly_0.png"
+dest_files=["res://.godot/imported/powerupfly_0.png-21025b36496a07d429aa019dd2e01c01.ctex"]
 
 [params]
 

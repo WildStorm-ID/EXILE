@@ -203,7 +203,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "Keluar"
 
 [node name="CreditsPanel" type="PanelContainer" parent="MenuLayer/Root" unique_id=1407271036]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -275,7 +274,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="AssetColumn" type="VBoxContainer" parent="MenuLayer/Root/CreditsPanel/MarginContainer/VBoxContainer/Columns" unique_id=504106998]
-custom_minimum_size = Vector2(340, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
@@ -296,15 +295,14 @@ text = "[ SPRITES ]
 • Finzo flyingfish animation
 • Hazard objects
 • Powerup items
-• HUD elements
-
-[ ENVIRONMENT ]
-• Brantas river backdrop
-• Factory pollution layers
-• Water and bubble effects
 
 [ AUDIO ]
-• Movement, hit, ambient, and fanfare SFX"
+• Sound Effect by YUSUF_SFX from Pixabay (ui click)
+• Sound Effect by Universfield from Pixabay (splash)
+• Sound Effect by freesound_community from Pixabay (flap)
+• Sound Effect by Universfield from Pixabay (win fanfare)
+• Sound Effect by ALEXIS_GAMING_CAM from Pixabay (item collect)
+• Sound Effect by Dilip from Pixabay (hurt)"
 horizontal_alignment = 1
 autowrap_mode = 3
 
