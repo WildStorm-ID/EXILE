@@ -203,6 +203,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "Keluar"
 
 [node name="CreditsPanel" type="PanelContainer" parent="MenuLayer/Root" unique_id=1407271036]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

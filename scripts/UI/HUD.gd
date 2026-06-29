@@ -5,6 +5,7 @@ signal next_level_requested
 
 const MAX_STATUS_HITS := 3
 const MAIN_MENU_SCENE := "res://scenes/UI/MainMenu.tscn"
+const UI_CLICK := preload("res://assets/audio/ui_click.wav")
 
 @onready var score_label: Label = $Root/TopBar/ScoreBox/ScoreLabel
 @onready var health_fill: ColorRect = $Root/TopBar/HealthBar/Fill
@@ -16,7 +17,10 @@ const MAIN_MENU_SCENE := "res://scenes/UI/MainMenu.tscn"
 @onready var restart_button: Button = $Root/Center/ResultPanel/MarginContainer/VBoxContainer/ButtonRow/RestartButton
 @onready var menu_button: Button = $Root/Center/ResultPanel/MarginContainer/VBoxContainer/ButtonRow/MenuButton
 
+var click_sfx: AudioStreamPlayer
+
 func _ready() -> void:
+	_setup_click_sfx()
 	freedom_banner.modulate.a = 0.0
 	result_panel.hide()
 	restart_button.pressed.connect(_on_restart_pressed)
@@ -68,10 +72,24 @@ func _update_health_bar(hit_count: int) -> void:
 	health_shine.scale.x = ratio
 
 func _on_restart_pressed() -> void:
+	_play_click()
+	await get_tree().create_timer(0.08).timeout
 	if restart_button.text == "Next Level":
 		next_level_requested.emit()
 	else:
 		get_tree().reload_current_scene()
 
 func _on_menu_pressed() -> void:
+	_play_click()
+	await get_tree().create_timer(0.25).timeout
 	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+
+func _setup_click_sfx() -> void:
+	click_sfx = AudioStreamPlayer.new()
+	click_sfx.stream = UI_CLICK
+	click_sfx.volume_db = -7.0
+	add_child(click_sfx)
+
+func _play_click() -> void:
+	if click_sfx:
+		click_sfx.play()

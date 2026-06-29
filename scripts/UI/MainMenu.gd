@@ -46,6 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_start_pressed() -> void:
 	_play_click()
+	await get_tree().create_timer(0.25).timeout
 	get_tree().change_scene_to_file(WORLD_SCENE)
 
 func _on_credits_pressed() -> void:
@@ -64,6 +65,7 @@ func _on_credits_back_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	_play_click()
+	await get_tree().create_timer(0.25).timeout
 	get_tree().quit()
 
 func _setup_preview_fish() -> void:

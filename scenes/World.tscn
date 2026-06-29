@@ -13,9 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://2cv06hmnrndp" path="res://assets/audio/splash.wav" id="14_splash"]
 [ext_resource type="AudioStream" uid="uid://dpcqo32xlfoa" path="res://assets/audio/flap.wav" id="15_flap"]
 [ext_resource type="AudioStream" uid="uid://bdj8xt8dx6dgh" path="res://assets/audio/hurt.wav" id="16_hurt"]
-[ext_resource type="AudioStream" uid="uid://bojg2jfg2li13" path="res://assets/audio/win.wav" id="17_win"]
+[ext_resource type="AudioStream" uid="uid://bojg2jfg2li13" path="res://assets/audio/win_fanfare.wav" id="17_win"]
 [ext_resource type="Script" uid="uid://epfp12siy2x" path="res://scripts/WaterGameplay.gd" id="18_water_gameplay"]
-[ext_resource type="AudioStream" path="res://assets/audio/powerup.wav" id="19_powerup"]
+[ext_resource type="AudioStream" uid="uid://clac32k57lj6u" path="res://assets/audio/powerup.wav" id="19_powerup"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
 shader = ExtResource("12_vignette_shader")
@@ -26,6 +26,8 @@ shader_parameter/softness = 0.36
 [node name="World" type="Node2D" unique_id=1946118258]
 script = ExtResource("1_game_manager")
 speed_step_distance = 200
+level_start_distance = 50
+level_distance_step = 50
 
 [node name="ZoneBackdrop" type="CanvasLayer" parent="." unique_id=1116698473]
 layer = -200
@@ -129,6 +131,6 @@ stream = ExtResource("16_hurt")
 stream = ExtResource("17_win")
 volume_db = -2.0
 
-[node name="Powerup" type="AudioStreamPlayer" parent="SFX"]
+[node name="Powerup" type="AudioStreamPlayer" parent="SFX" unique_id=2036385065]
 stream = ExtResource("19_powerup")
 volume_db = -3.0
