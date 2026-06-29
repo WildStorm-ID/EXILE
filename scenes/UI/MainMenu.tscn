@@ -263,13 +263,13 @@ theme_override_font_sizes/font_size = 16
 text = "Developed by:
 Hati Jiwa Wira (HAJIWARA)
 
-[ TEAM DEVELOPER ]
-• Ahmad Hafidz Muhaimin
-• Jonatan Arya Santosa
-• Wilda Putra Cahya Ramadhan
+[ TEAM ]
+Ahmad Hafidz Muhaimin
+Jonatan Arya Santosa
+Wilda Putra Cahya Ramadhan
 
-[ GAME ENGINE ]
-• Built with Godot Engine
+[ENGINE ]
+Built with Godot Engine
   (godotengine.org/license)"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -293,17 +293,18 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.79, 0.96, 0.91, 1)
 theme_override_font_sizes/font_size = 16
 text = "[ SPRITES ]
-• Finzo flyingfish animation
-• Hazard objects
-• Powerup items
+Finzo flyingfish animation
+Hazard objects
+Powerup items
 
 [ AUDIO ]
-• Sound Effect by YUSUF_SFX from Pixabay (ui click)
-• Sound Effect by Universfield from Pixabay (splash)
-• Sound Effect by freesound_community from Pixabay (flap)
-• Sound Effect by Universfield from Pixabay (win fanfare)
-• Sound Effect by ALEXIS_GAMING_CAM from Pixabay (item collect)
-• Sound Effect by Dilip from Pixabay (hurt)"
+UI Click — YUSUF_SFX (Pixabay)
+Splash — Universfield (Pixabay)
+Flap — freesound_community (Pixabay)
+Win Fanfare — Universfield (Pixabay)
+Power Up — ALEXIS_GAMING_CAM (Pixabay)
+Hurt — Dilip (Pixabay)
+"
 horizontal_alignment = 1
 autowrap_mode = 3
 
