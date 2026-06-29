@@ -22,6 +22,7 @@ signal freedom_reached(final_score: int)
 @onready var flap_sfx: AudioStreamPlayer = $SFX/Flap
 @onready var hurt_sfx: AudioStreamPlayer = $SFX/Hurt
 @onready var win_sfx: AudioStreamPlayer = $SFX/Win
+@onready var powerup_sfx: AudioStreamPlayer = $SFX/Powerup
 
 var start_x := 0.0
 var best_x := 0.0
@@ -85,9 +86,11 @@ func _on_item_collected(item_type: StringName, hit_player: Node) -> void:
 		return
 	match item_type:
 		&"hp":
-			player.heal_one()
+			if player.heal_one():
+				powerup_sfx.play()
 		&"speed":
 			player.apply_speed_boost()
+			powerup_sfx.play()
 
 func _on_player_hit_registered(hit_count: int) -> void:
 	hurt_sfx.play()

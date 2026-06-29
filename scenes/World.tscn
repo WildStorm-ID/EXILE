@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bdj8xt8dx6dgh" path="res://assets/audio/hurt.wav" id="16_hurt"]
 [ext_resource type="AudioStream" uid="uid://bojg2jfg2li13" path="res://assets/audio/win.wav" id="17_win"]
 [ext_resource type="Script" uid="uid://epfp12siy2x" path="res://scripts/WaterGameplay.gd" id="18_water_gameplay"]
+[ext_resource type="AudioStream" path="res://assets/audio/powerup.wav" id="19_powerup"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
 shader = ExtResource("12_vignette_shader")
@@ -127,3 +128,7 @@ stream = ExtResource("16_hurt")
 [node name="Win" type="AudioStreamPlayer" parent="SFX" unique_id=908136366]
 stream = ExtResource("17_win")
 volume_db = -2.0
+
+[node name="Powerup" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("19_powerup")
+volume_db = -3.0

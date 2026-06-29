@@ -79,6 +79,11 @@ func _physics_process(delta: float) -> void:
 			splash_requested.emit()
 
 	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if input_vector.x < -0.1:
+		sprite.flip_h = true
+	elif input_vector.x > 0.1:
+		sprite.flip_h = false
+
 	var slow := smoke_slow_factor if in_smoke else 1.0
 	var boost := speed_boost_multiplier if speed_boost_active else 1.0
 
@@ -119,11 +124,13 @@ func heal_one() -> bool:
 	if hit_count <= 0 or stunned or freedom_mode:
 		return false
 	hit_count -= 1
+	_play_powerup_animation()
 	status_changed.emit(_status_text(), hit_count, in_smoke)
 	healed.emit(hit_count)
 	return true
 
 func apply_speed_boost() -> void:
+	_play_powerup_animation()
 	speed_boost_active = true
 	speed_boost_changed.emit(true)
 	_speed_boost_timer = get_tree().create_timer(speed_boost_duration)
@@ -185,6 +192,11 @@ func reset_for_level(newposition: Vector2) -> void:
 	_camera_center_x = global_position.x + camera_forward_offset
 	_update_camera_anchor()
 	sprite.play("idle")
+
+func _play_powerup_animation() -> void:
+	if stunned or freedom_mode:
+		return
+	sprite.play("powerup_swim" if _is_in_water() else "powerup_fly")
 
 func _apply_water_motion(delta: float, input_vector: Vector2, slow: float) -> void:
 	var target_velocity := Vector2(
@@ -250,6 +262,8 @@ func _update_animation() -> void:
 	if stunned:
 		if sprite.animation != &"stun":
 			sprite.play("stun")
+		return
+	if String(sprite.animation).begins_with("powerup_") and sprite.is_playing():
 		return
 	if String(sprite.animation).begins_with("hurt_") and sprite.is_playing():
 		return
