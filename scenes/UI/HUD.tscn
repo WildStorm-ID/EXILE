@@ -6,18 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://brxk082goaeru" path="res://assets/sprites/ui/hud_victory_banner.png" id="4_victory_banner"]
 [ext_resource type="Texture2D" uid="uid://c5whnkri5ukn6" path="res://assets/sprites/ui/hud_distance_icon.png" id="5_distance_icon"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.02, 0.05, 0.07, 0.74)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.66, 0.9, 0.96, 0.55)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
 bg_color = Color(0.08, 0.26, 0.32, 0.95)
 border_width_left = 1
@@ -29,6 +17,18 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.02, 0.05, 0.07, 0.74)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.66, 0.9, 0.96, 0.55)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="HUD" type="CanvasLayer" unique_id=997571952]
 layer = 20
@@ -58,6 +58,7 @@ theme_override_constants/separation = 12
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("2_health_icon")
+expand_mode = 3
 
 [node name="HealthBar" type="Control" parent="Root/TopBar" unique_id=1833098179]
 custom_minimum_size = Vector2(108, 22)
@@ -165,13 +166,14 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "00000 m"
 horizontal_alignment = 2
 
-[node name="PauseButton" type="Button" parent="Root/TopBar"]
+[node name="PauseButton" type="Button" parent="Root/TopBar" unique_id=1838360948]
 custom_minimum_size = Vector2(44, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+icon_alignment = 1
 
 [node name="Center" type="Control" parent="Root" unique_id=1023870683]
 layout_mode = 1
