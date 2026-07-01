@@ -18,7 +18,7 @@ const UI_CLICK := preload("res://assets/audio/ui_click.wav")
 @onready var result_score: Label = $Root/Center/ResultPanel/MarginContainer/VBoxContainer/ResultScore
 @onready var restart_button: Button = $Root/Center/ResultPanel/MarginContainer/VBoxContainer/ButtonRow/RestartButton
 @onready var menu_button: Button = $Root/Center/ResultPanel/MarginContainer/VBoxContainer/ButtonRow/MenuButton
-@onready var pause_button: Button = $Root/PauseButton
+@onready var pause_button: Button = $Root/TopBar/PauseButton
 
 var click_sfx: AudioStreamPlayer
 var result_mode := &"none"
@@ -75,8 +75,9 @@ func show_pause_screen() -> void:
 	result_mode = &"pause"
 	result_title.text = "PAUSED"
 	result_score.text = "Pelarian dihentikan sementara"
-	restart_button.text = "Continue"
+	restart_button.text = "Coba Lagi"
 	menu_button.text = "Main Menu"
+	pause_button.show()
 	pause_button.text = ">"
 	freedom_banner.hide()
 	result_panel.show()
@@ -109,7 +110,7 @@ func _on_restart_pressed() -> void:
 	await get_tree().create_timer(0.08).timeout
 	match result_mode:
 		&"pause":
-			resume_requested.emit()
+			get_tree().reload_current_scene()
 		&"win":
 			if restart_button.text == "Next Level":
 				next_level_requested.emit()
