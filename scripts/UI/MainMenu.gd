@@ -2,6 +2,7 @@ extends Node2D
 
 const WORLD_SCENE := "res://scenes/World.tscn"
 const UI_CLICK := preload("res://assets/audio/ui_click.wav")
+const MAIN_MENU_BGM := preload("res://assets/audio/bgm_mainmenu.ogg")
 const IDLE_FRAMES := [
 	preload("res://assets/sprites/player/flying_fish/idle_0.png"),
 	preload("res://assets/sprites/player/flying_fish/idle_1.png"),
@@ -20,11 +21,13 @@ const IDLE_FRAMES := [
 var drift_x := 0.0
 var preview_fish: AnimatedSprite2D
 var click_sfx: AudioStreamPlayer
+var bgm: AudioStreamPlayer
 
 func _ready() -> void:
 	Engine.time_scale = 1.0
 	_setup_preview_fish()
 	_setup_click_sfx()
+	_setup_bgm()
 	start_button.pressed.connect(_on_start_pressed)
 	credits_button.pressed.connect(_on_credits_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
@@ -88,6 +91,14 @@ func _setup_click_sfx() -> void:
 	click_sfx.stream = UI_CLICK
 	click_sfx.volume_db = -7.0
 	add_child(click_sfx)
+
+func _setup_bgm() -> void:
+	bgm = AudioStreamPlayer.new()
+	bgm.stream = MAIN_MENU_BGM
+	bgm.volume_db = -10.0
+	bgm.finished.connect(bgm.play)
+	add_child(bgm)
+	bgm.play()
 
 func _play_click() -> void:
 	if click_sfx:

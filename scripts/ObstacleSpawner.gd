@@ -68,6 +68,7 @@ const ITEMS := [
 
 var camera: Camera2D
 var enabled := true
+var movement_paused := false
 var world_speed := 1.0
 var level_index := 0
 
@@ -83,6 +84,8 @@ func _process(delta: float) -> void:
 		camera = get_viewport().get_camera_2d()
 	if camera == null:
 		return
+	if movement_paused:
+		return
 
 	var left_limit := camera.global_position.x - get_viewport_rect().size.x * 0.5 - cleanup_distance
 	for child in get_children():
@@ -97,6 +100,9 @@ func _process(delta: float) -> void:
 
 func set_world_speed(value: float) -> void:
 	world_speed = max(value, 0.1)
+
+func set_movement_paused(value: bool) -> void:
+	movement_paused = value
 
 func set_level(value: int) -> void:
 	level_index = max(value, 0)

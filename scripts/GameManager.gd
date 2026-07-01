@@ -30,6 +30,7 @@ var score_meters := 0
 var speed_multiplier := 1.0
 var game_active := true
 var ending_started := false
+var game_paused := false
 var current_level := 1
 var current_target_distance := 1000
 
@@ -53,6 +54,8 @@ func _ready() -> void:
 	game_over.connect(hud.show_game_over)
 	freedom_reached.connect(hud.show_freedom)
 	hud.next_level_requested.connect(_on_next_level_requested)
+	hud.pause_requested.connect(_pause_game)
+	hud.resume_requested.connect(_resume_game)
 
 	bgm.finished.connect(bgm.play)
 	bgm.play()
@@ -75,6 +78,15 @@ func _process(_delta: float) -> void:
 
 	if score_meters >= current_target_distance and not ending_started:
 		_trigger_freedom()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and not ending_started and player.hit_count < player.max_hits:
+		hud.play_click_feedback()
+		if game_paused:
+			_resume_game()
+		elif game_active:
+			_pause_game()
+		get_viewport().set_input_as_handled()
 
 func _on_hazard_hit(hit_player: Node) -> void:
 	if not game_active or hit_player != player:
@@ -118,6 +130,7 @@ func _update_speed_for_score() -> void:
 func _trigger_game_over() -> void:
 	if not game_active:
 		return
+	game_paused = false
 	game_active = false
 	Engine.time_scale = 1.0
 	player.enter_stun_mode()
@@ -129,6 +142,7 @@ func _trigger_game_over() -> void:
 func _trigger_freedom() -> void:
 	if ending_started:
 		return
+	game_paused = false
 	ending_started = true
 	game_active = false
 	spawner.set_spawning_enabled(false)
@@ -154,6 +168,7 @@ func _on_next_level_requested() -> void:
 	current_target_distance = mini(freedom_distance, level_start_distance + (current_level - 1) * level_distance_step)
 	ending_started = false
 	game_active = true
+	game_paused = false
 	speed_multiplier = 1.0
 	var next_start_x := start_x + float(score_meters) * pixels_per_meter
 	player.reset_for_level(Vector2(next_start_x, 360.0))
@@ -162,7 +177,32 @@ func _on_next_level_requested() -> void:
 	spawner.set_world_speed(speed_multiplier)
 	spawner.set_level(current_level - 1)
 	spawner.set_spawning_enabled(true)
+	spawner.set_movement_paused(false)
 	hurt_effect.fade_to_clear()
 	hud.hide_result()
+	if not bgm.playing:
+		bgm.play()
 	score_changed.emit(score_meters)
 	speed_changed.emit(speed_multiplier)
+
+func _pause_game() -> void:
+	if game_paused or not game_active or ending_started:
+		return
+	game_paused = true
+	game_active = false
+	player.set_control_enabled(false)
+	spawner.set_spawning_enabled(false)
+	spawner.set_movement_paused(true)
+	bgm.stream_paused = true
+	hud.show_pause_screen()
+
+func _resume_game() -> void:
+	if not game_paused:
+		return
+	game_paused = false
+	game_active = true
+	player.set_control_enabled(true)
+	spawner.set_movement_paused(false)
+	spawner.set_spawning_enabled(true)
+	bgm.stream_paused = false
+	hud.hide_pause_screen()

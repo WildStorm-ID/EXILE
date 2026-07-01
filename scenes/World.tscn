@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b53a7wbmtg1r" path="res://assets/backgrounds/pegunungan_layer1_pixel.png" id="10_mountains"]
 [ext_resource type="Texture2D" uid="uid://bepanlur7od2p" path="res://assets/backgrounds/pabrik_layer2_pixel.png" id="11_factories"]
 [ext_resource type="Shader" uid="uid://cvyjuka3irjvv" path="res://shaders/vignette.gdshader" id="12_vignette_shader"]
-[ext_resource type="AudioStream" uid="uid://ca280ep3ovag7" path="res://assets/audio/ocean_ambient.wav" id="13_bgm"]
+[ext_resource type="AudioStream" path="res://assets/audio/bgm_gameplay.ogg" id="13_bgm"]
 [ext_resource type="AudioStream" uid="uid://2cv06hmnrndp" path="res://assets/audio/splash.wav" id="14_splash"]
 [ext_resource type="AudioStream" uid="uid://dpcqo32xlfoa" path="res://assets/audio/flap.wav" id="15_flap"]
 [ext_resource type="AudioStream" uid="uid://bdj8xt8dx6dgh" path="res://assets/audio/hurt.wav" id="16_hurt"]
