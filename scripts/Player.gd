@@ -124,12 +124,15 @@ func take_hit() -> bool:
 	return true
 
 func heal_one() -> bool:
-	if hit_count <= 0 or stunned or freedom_mode:
+	if stunned or freedom_mode:
 		return false
-	hit_count -= 1
 	_play_powerup_animation()
-	status_changed.emit(_status_text(), hit_count, in_smoke)
-	healed.emit(hit_count)
+	if hit_count > 0:
+		hit_count -= 1
+		status_changed.emit(_status_text(), hit_count, in_smoke)
+		healed.emit(hit_count)
+	else:
+		status_changed.emit(_status_text(), hit_count, in_smoke)
 	return true
 
 func apply_speed_boost() -> void:

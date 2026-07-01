@@ -34,6 +34,7 @@ func _ready() -> void:
 	pause_button.pressed.connect(_on_pause_pressed)
 	pause_button.icon = PAUSE_ICON
 	pause_button.text = ""
+	_set_pause_button_enabled(true)
 	_update_health_bar(0)
 
 func set_score(score_meters: int) -> void:
@@ -59,7 +60,9 @@ func show_win_screen(final_score: int, level: int = 1, target_distance: int = 0,
 	result_score.text = "Level %d selesai: %d m" % [level, target_distance if target_distance > 0 else final_score]
 	restart_button.text = "Next Level" if has_next_level else "Coba Lagi"
 	menu_button.text = "Main Menu"
-	pause_button.hide()
+	pause_button.show()
+	pause_button.icon = PAUSE_ICON
+	_set_pause_button_enabled(false)
 	freedom_banner.hide()
 	result_panel.show()
 	restart_button.grab_focus()
@@ -70,7 +73,9 @@ func show_game_over(final_score: int) -> void:
 	result_score.text = "Bertahan sejauh: %d m" % final_score
 	restart_button.text = "Coba Lagi"
 	menu_button.text = "Main Menu"
-	pause_button.hide()
+	pause_button.show()
+	pause_button.icon = PAUSE_ICON
+	_set_pause_button_enabled(false)
 	freedom_banner.hide()
 	result_panel.show()
 	restart_button.grab_focus()
@@ -83,6 +88,7 @@ func show_pause_screen() -> void:
 	menu_button.text = "Main Menu"
 	pause_button.show()
 	pause_button.icon = PLAY_ICON
+	_set_pause_button_enabled(true)
 	freedom_banner.hide()
 	result_panel.show()
 	restart_button.grab_focus()
@@ -93,6 +99,7 @@ func hide_pause_screen() -> void:
 	result_mode = &"none"
 	result_panel.hide()
 	pause_button.icon = PAUSE_ICON
+	_set_pause_button_enabled(true)
 	pause_button.grab_focus()
 
 func hide_result() -> void:
@@ -100,6 +107,7 @@ func hide_result() -> void:
 	result_panel.hide()
 	pause_button.show()
 	pause_button.icon = PAUSE_ICON
+	_set_pause_button_enabled(true)
 	freedom_banner.show()
 	freedom_banner.modulate.a = 0.0
 
@@ -129,11 +137,17 @@ func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
 
 func _on_pause_pressed() -> void:
+	if pause_button.disabled:
+		return
 	_play_click()
 	if result_mode == &"pause":
 		resume_requested.emit()
 	else:
 		pause_requested.emit()
+
+func _set_pause_button_enabled(value: bool) -> void:
+	pause_button.disabled = not value
+	pause_button.mouse_filter = Control.MOUSE_FILTER_STOP if value else Control.MOUSE_FILTER_IGNORE
 
 func _setup_click_sfx() -> void:
 	click_sfx = AudioStreamPlayer.new()
