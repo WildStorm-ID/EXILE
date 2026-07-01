@@ -43,6 +43,8 @@ var _last_in_water := true
 var _smoke_sources := 0
 var _camera_center_x := 0.0
 var _speed_boost_timer: SceneTreeTimer
+var _powerup_animation_active := false
+var _powerup_animation_token := 0
 
 func _ready() -> void:
 	_ensure_input_actions()
@@ -111,6 +113,7 @@ func take_hit() -> bool:
 
 	hit_count += 1
 	invulnerable = true
+	_cancel_powerup_animation()
 	if hit_count >= max_hits:
 		sprite.play("stun")
 	else:
@@ -159,6 +162,7 @@ func enter_freedom_mode() -> void:
 	freedom_mode = true
 	stunned = false
 	controls_enabled = false
+	_cancel_powerup_animation()
 	velocity = Vector2.ZERO
 	in_smoke = false
 	_smoke_sources = 0
@@ -168,6 +172,7 @@ func enter_stun_mode() -> void:
 	stunned = true
 	freedom_mode = false
 	controls_enabled = false
+	_cancel_powerup_animation()
 	in_smoke = false
 	_smoke_sources = 0
 	velocity = Vector2(0.0, 260.0 if global_position.y < waterline_y else -90.0)
@@ -182,6 +187,7 @@ func reset_status() -> void:
 	freedom_mode = false
 	stunned = false
 	speed_boost_active = false
+	_cancel_powerup_animation()
 	status_changed.emit(_status_text(), hit_count, in_smoke)
 
 func reset_for_level(newposition: Vector2) -> void:
@@ -196,7 +202,20 @@ func reset_for_level(newposition: Vector2) -> void:
 func _play_powerup_animation() -> void:
 	if stunned or freedom_mode:
 		return
+	_powerup_animation_token += 1
+	var token := _powerup_animation_token
+	_powerup_animation_active = true
 	sprite.play("powerup_swim" if _is_in_water() else "powerup_fly")
+	await get_tree().create_timer(1.0).timeout
+	if _powerup_animation_token != token:
+		return
+	_powerup_animation_active = false
+	if String(sprite.animation).begins_with("powerup_"):
+		_update_animation()
+
+func _cancel_powerup_animation() -> void:
+	_powerup_animation_token += 1
+	_powerup_animation_active = false
 
 func _apply_water_motion(delta: float, input_vector: Vector2, slow: float) -> void:
 	var target_velocity := Vector2(
@@ -263,7 +282,7 @@ func _update_animation() -> void:
 		if sprite.animation != &"stun":
 			sprite.play("stun")
 		return
-	if String(sprite.animation).begins_with("powerup_") and sprite.is_playing():
+	if _powerup_animation_active and String(sprite.animation).begins_with("powerup_"):
 		return
 	if String(sprite.animation).begins_with("hurt_") and sprite.is_playing():
 		return

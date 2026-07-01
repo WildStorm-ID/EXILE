@@ -8,6 +8,8 @@ signal resume_requested
 const MAX_STATUS_HITS := 3
 const MAIN_MENU_SCENE := "res://scenes/UI/MainMenu.tscn"
 const UI_CLICK := preload("res://assets/audio/ui_click.wav")
+const PAUSE_ICON := preload("res://assets/sprites/ui/icon_pause.svg")
+const PLAY_ICON := preload("res://assets/sprites/ui/icon_play.svg")
 
 @onready var score_label: Label = $Root/TopBar/ScoreBox/ScoreLabel
 @onready var health_fill: ColorRect = $Root/TopBar/HealthBar/Fill
@@ -30,6 +32,8 @@ func _ready() -> void:
 	restart_button.pressed.connect(_on_restart_pressed)
 	menu_button.pressed.connect(_on_menu_pressed)
 	pause_button.pressed.connect(_on_pause_pressed)
+	pause_button.icon = PAUSE_ICON
+	pause_button.text = ""
 	_update_health_bar(0)
 
 func set_score(score_meters: int) -> void:
@@ -78,7 +82,7 @@ func show_pause_screen() -> void:
 	restart_button.text = "Coba Lagi"
 	menu_button.text = "Main Menu"
 	pause_button.show()
-	pause_button.text = ">"
+	pause_button.icon = PLAY_ICON
 	freedom_banner.hide()
 	result_panel.show()
 	restart_button.grab_focus()
@@ -88,14 +92,14 @@ func hide_pause_screen() -> void:
 		return
 	result_mode = &"none"
 	result_panel.hide()
-	pause_button.text = "||"
+	pause_button.icon = PAUSE_ICON
 	pause_button.grab_focus()
 
 func hide_result() -> void:
 	result_mode = &"none"
 	result_panel.hide()
 	pause_button.show()
-	pause_button.text = "||"
+	pause_button.icon = PAUSE_ICON
 	freedom_banner.show()
 	freedom_banner.modulate.a = 0.0
 

@@ -12,6 +12,7 @@ signal freedom_reached(final_score: int)
 @export var level_distance_step := 1000
 @export var freedom_distance := 5000
 @export var waterline_y := 300.0
+@export var bgm_fade_duration := 1.0
 
 @onready var player: Node = $Player
 @onready var spawner: Node = $ObstacleSpawner
@@ -33,9 +34,12 @@ var ending_started := false
 var game_paused := false
 var current_level := 1
 var current_target_distance := 1000
+var _bgm_base_volume_db := 0.0
+var _bgm_fade_tween: Tween
 
 func _ready() -> void:
 	Engine.time_scale = 1.0
+	_bgm_base_volume_db = bgm.volume_db
 	start_x = player.global_position.x
 	best_x = start_x
 
@@ -58,6 +62,7 @@ func _ready() -> void:
 	hud.resume_requested.connect(_resume_game)
 
 	bgm.finished.connect(bgm.play)
+	_restore_bgm_volume()
 	bgm.play()
 
 	current_target_distance = level_start_distance
@@ -136,6 +141,7 @@ func _trigger_game_over() -> void:
 	player.enter_stun_mode()
 	spawner.set_spawning_enabled(false)
 	hurt_effect.fade_to_clear()
+	_fade_bgm_to_silence()
 	await get_tree().create_timer(0.75).timeout
 	game_over.emit(score_meters)
 
@@ -150,7 +156,8 @@ func _trigger_freedom() -> void:
 	player.enter_freedom_mode()
 	hurt_effect.fade_to_clear()
 	hurt_effect.play_brighten()
-	bgm.stop()
+	if current_target_distance >= freedom_distance:
+		_fade_bgm_to_silence()
 	win_sfx.play()
 	freedom_reached.emit(score_meters)
 
@@ -180,6 +187,8 @@ func _on_next_level_requested() -> void:
 	spawner.set_movement_paused(false)
 	hurt_effect.fade_to_clear()
 	hud.hide_result()
+	_restore_bgm_volume()
+	bgm.stream_paused = false
 	if not bgm.playing:
 		bgm.play()
 	score_changed.emit(score_meters)
@@ -206,3 +215,20 @@ func _resume_game() -> void:
 	spawner.set_spawning_enabled(true)
 	bgm.stream_paused = false
 	hud.hide_pause_screen()
+
+func _fade_bgm_to_silence() -> void:
+	if _bgm_fade_tween:
+		_bgm_fade_tween.kill()
+	var start_volume := db_to_linear(bgm.volume_db)
+	_bgm_fade_tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	_bgm_fade_tween.tween_method(_set_bgm_linear_volume, start_volume, 0.0, bgm_fade_duration)
+	_bgm_fade_tween.tween_callback(Callable(bgm, "stop"))
+
+func _restore_bgm_volume() -> void:
+	if _bgm_fade_tween:
+		_bgm_fade_tween.kill()
+		_bgm_fade_tween = null
+	bgm.volume_db = _bgm_base_volume_db
+
+func _set_bgm_linear_volume(value: float) -> void:
+	bgm.volume_db = linear_to_db(maxf(value, 0.001))

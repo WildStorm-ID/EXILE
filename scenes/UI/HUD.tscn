@@ -172,7 +172,6 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button")
-text = "||"
 
 [node name="Center" type="Control" parent="Root" unique_id=1023870683]
 layout_mode = 1

@@ -21,10 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://de7jqm8rsnrx5" path="res://assets/sprites/player/flying_fish/hurtswim_1.png" id="19_hurtswim_1"]
 [ext_resource type="Texture2D" uid="uid://m8enjvep8jtk" path="res://assets/sprites/player/flying_fish/stun_0.png" id="20_stun_0"]
 [ext_resource type="Texture2D" uid="uid://d3vqvq0gugpft" path="res://assets/sprites/player/flying_fish/stun_1.png" id="21_stun_1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/powerupfly_0.png" id="22_powerupfly_0"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/powerupfly_1.png" id="23_powerupfly_1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/powerupswim_0.png" id="24_powerupswim_0"]
-[ext_resource type="Texture2D" path="res://assets/sprites/player/flying_fish/powerupswim_1.png" id="25_powerupswim_1"]
+[ext_resource type="Texture2D" uid="uid://b3c0dto1duw4p" path="res://assets/sprites/player/flying_fish/powerupfly_0.png" id="22_powerupfly_0"]
+[ext_resource type="Texture2D" uid="uid://simuotsrliw8" path="res://assets/sprites/player/flying_fish/powerupfly_1.png" id="23_powerupfly_1"]
+[ext_resource type="Texture2D" uid="uid://buheyvj0pdkyg" path="res://assets/sprites/player/flying_fish/powerupswim_0.png" id="24_powerupswim_0"]
+[ext_resource type="Texture2D" uid="uid://bkdqq3jlrtjgf" path="res://assets/sprites/player/flying_fish/powerupswim_1.png" id="25_powerupswim_1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
@@ -91,9 +91,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("23_powerupfly_1")
 }],
-"loop": false,
+"loop": true,
 "name": &"powerup_fly",
-"speed": 2.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -102,9 +102,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("25_powerupswim_1")
 }],
-"loop": false,
+"loop": true,
 "name": &"powerup_swim",
-"speed": 2.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,8 +150,10 @@ script = ExtResource("1_player_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2055498269]
 sprite_frames = SubResource("SpriteFrames_player")
-animation = &"idle"
+animation = &"powerup_swim"
 autoplay = "idle"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=667681312]
 position = Vector2(6.5, 13)
